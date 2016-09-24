@@ -5,6 +5,7 @@
 #' @importFrom clusterProfiler compareCluster
 #' @importFrom clusterProfiler bitr 
 #' @export
+#' @return no return value, PEA result is plotted
 PEA <- function(listMoonlight){
 
     list.ocg.id <- listMoonlight
