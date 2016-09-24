@@ -1,0 +1,37 @@
+citHeader("To cite MoonlightR in publications use:")
+
+citEntry(entry = "article",
+         title        = "..",
+         author       = personList(as.person("Antonio Colaprico"),
+                                   as.person("..."),
+                                   as.person("..."),
+                                   as.person("..."),
+								   as.person("..."),
+								   as.person("..."),
+								   as.person("..."),
+                                   as.person("..."),
+                                   as.person("..."),
+                                   as.person("...")
+         ),
+         journal = "manuscript in preparation",
+         year         = "2016",
+         textVersion  =
+             paste("Antonio Colaprico, ...,",
+                   "..., ..., ...,..., ..., ...,",
+                   "... (2016).",
+                   "Moonlight: An R/Bioconductor package for ....")
+)
+
+citEntry(entry = "article",
+         title        = "...................",
+         author       = personList(as.person("Antonio Colaprico"),
+                                   as.person("..."),
+                                   as.person("...")
+         ),
+         journal = "...",
+         year         = "...",
+		 	volume = 9,
+	number = 62,
+         textVersion  =
+             paste("....................")
+)

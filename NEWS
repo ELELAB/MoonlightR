@@ -1,0 +1,27 @@
+  SpidermiR 
+----------------------------------------------------------------
+  FIRST VERSION - FEATURES
+
+* SpidermiRquery_species	Searching by species.
+* SpidermiRquery_networks_type	Searching by network categories.
+* SpidermiRquery_spec_networks	Searching by species, and network categories.
+* SpidermiRquery_disease	Searching by miRNA-disease.
+* SpidermiRdownload_net	Downloading network data.
+* SpidermiRdownload_pharmacomir	Download both miRNA target and the gene-drug interaction from PharmacomiR database.
+* SpidermiRdownload_miRNAvalidate Download miRNA validated database
+* SpidermiRprepare_NET	Prepare matrix of gene network with Ensembl Gene ID, and gene symbols.
+* SpidermiRanalyze_mirna_network	Integration of microRNA-target interactions.
+* SpidermiRanalyze_mirna_gene_complnet	 Integration of microRNA-target complete interactions.
+* SpidermiRanalyze_mirna_extra_cir	Integration of Extracellular/Circulating miRNA.
+* SpidermiRanalyze_direct_net	Searching by biomarkers of interest with direct interaction.
+* SpidermiRanalyze_direct_subnetwork	Network composed by only the nodes in biomarkers of interest.
+* SpidermiRanalyze_subnetwork_neigh	Network composed by the nodes in biomarker of interest and all the edges among this brunch of nodes.
+* SpidermiRanalyze_degree_centrality	 Ranking degree centrality genes.
+* SpidermiRanalyze_Community_detection	Find community detection.
+* SpidermiRanalyze_Community_detection_net	Find the network of community detection.
+* SpidermiRanalyze_Community_detection_bi	Community detection from biomarkers of interest.
+* SpidermiRanalyze_mirnanet_pharm	Integration of pharmacomiR in the network.
+* SpidermiRvisualize_mirnanet	Visualize Integration of direct gene network and direct-miRNA information.
+* SpidermiRvisualize_BI	Visualize the network from a set of biomarkers of interest.
+* SpidermiRvisualize_plot_target Visualize the plot with miRNAs and the number of their targets in the network. 
+

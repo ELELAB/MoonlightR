@@ -1,0 +1,65 @@
+Package: MoonlightR
+Type: Package
+Title: Identify oncogenes and tumor suppressor genes from genomic (gene expression) data
+Version:  0.99.0
+Date: 09-06-2016
+Author: Antonio Colaprico*,
+        Catharina Olsen*,
+        Claudia Cava, 
+        Thilde Terkelsen,
+        Laura Cantini,
+        Andre Olsen,
+        Gloria Bertoli,
+        Andrei Zinovyev,
+        Emmanuel Barillot,
+        Isabella Castiglioni,
+        Elena Papaleo,
+        Gianluca Bontempi
+Maintainer:  Antonio Colaprico <antonio.colaprico@ulb.ac.be>, Catharina Olsen <colsen@ulb.ac.be>          
+Depends:
+    R (>= 3.3),
+Imports:
+	parmigene,
+  randomForest,
+  SummarizedExperiment,
+  gplots,
+  circlize,
+  RColorBrewer,
+  HiveR,
+  clusterProfiler,
+  DOSE,
+  Biobase,
+  limma,
+  grDevices,
+  graphics,
+  TCGAbiolinks,
+  GEOquery,
+  stats
+Description: We developed an R/Bioconductor package called Moonlight to address these challenges and offer solutions by using a guided workflow 
+             to allow users to perform functional enrichment analysis (FEA) and upstream regulator analysis (URA).
+License: GPL (>= 3)
+biocViews: DNAMethylation,
+    DifferentialMethylation,
+    GeneRegulation,
+    GeneExpression,
+    MethylationArray,
+    DifferentialExpression,
+    Pathways,
+    Network,
+    Survival,
+    GeneSetEnrichment,
+    NetworkEnrichment
+Suggests:
+    BiocStyle,
+    knitr,
+    rmarkdown,
+    testthat,
+	devtools,
+	roxygen2,
+	png,
+	grid
+VignetteBuilder: knitr
+LazyData: true
+URL: https://github.com/torongs82/Moonlight
+BugReports: https://github.com/torongs82/Moonlight/issues
+RoxygenNote: 5.0.1
