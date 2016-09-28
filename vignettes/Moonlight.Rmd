@@ -560,6 +560,39 @@ img <- readPNG("DEGs_volcano.png")
 grid.raster(img)
 ```
 
+## `LPA`: Literature Phenotype Analysis
+The user can perform a literature phenotype analysis using the function `LPA`. 
+
+```{r, eval = FALSE, echo = TRUE, results='hide'}
+require(MoonlightR)
+data("DiseaseList")
+data("DEGsmatrix")
+
+DiseaseListNew <- list()
+BPselected <- c("apoptosis","proliferation of cells")
+
+for ( i in 1:length(BPselected)){
+  BPannotations <- DiseaseList[[which(names(DiseaseList) == BPselected[i])]]$ID
+  dataLPA <- LPA(dataDEGs = DEGsmatrix,
+               BP =  BPselected[i],
+               BPlist = BPannotations)
+  DiseaseListNew[[length(DiseaseListNew)+1]] <- dataLPA
+  names(DiseaseListNew)[[i]] <- BPselected[i]
+  }
+  
+DiseaseList10 <- DiseaseList
+DiseaseList <- DiseaseListNew
+
+DiseaseList <- DiseaseList10
+dataFEA <- FEA(DEGsmatrix = DEGsmatrix)
+
+data(DiseaseList)
+plotFEA(dataFEA = dataFEA,
+        plotNAME = "FEAplot",
+        height = 20,width = 10,
+        topBP = 2)
+```
+
 
 ## `FEA`: Functional Enrichment Analysis
 The user can perform a functional enrichment analysis using the function `FEAcomplete`. For each DEG in the gene set a z-score is calculated. This score indicates how the genes act in the gene set.
