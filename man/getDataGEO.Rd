@@ -20,7 +20,6 @@ return GEO gset
 This function retrieves and prepares GEO data
 }
 \examples{
-dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
-# to change with get.data.GEO
+dataDEGs <-  get.data.GEO(GEOobject = "GSE20347",platform = "GPL571")
 }
 

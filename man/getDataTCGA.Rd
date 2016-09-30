@@ -36,7 +36,6 @@ returns filtered TCGA data
 This function retrieves and prepares TCGA data
 }
 \examples{
-dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
-# to change with get.data.TCGA
+dataDEGs <- getDataTCGA(cancerType = "LUAD", dataType = "Gene expression", directory = "data", nSample = 10)
 }
 

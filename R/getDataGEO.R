@@ -8,8 +8,7 @@
 #' @export
 #' @return return GEO gset
 #' @examples
-#' dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
-#' # to change with get.data.GEO
+#' dataDEGs <-  get.data.GEO(GEOobject = "GSE20347",platform = "GPL571")
 
 getDataGEO <- function(GEOobject = "GSE39004", platform = "GPL6244", TCGAtumor=NULL){
     

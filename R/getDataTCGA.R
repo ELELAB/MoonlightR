@@ -24,8 +24,7 @@
 #' @export
 #' @return returns filtered TCGA data
 #' @examples
-#' dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
-#' # to change with get.data.TCGA
+#' dataDEGs <- getDataTCGA(cancerType = "LUAD", dataType = "Gene expression", directory = "data", nSample = 10)
 
 getDataTCGA <- function(cancerType, dataType, directory, 
                           cor.cut = 0.6, qnt.cut = 0.25, 
