@@ -416,7 +416,7 @@ To install use the code below.
 
 ```{r, eval = FALSE}
 #library(devtools)
-#install_github("torongs82/Moonlight/tree/master/MoonlightR")
+#install_github("ibsquare/MoonlightR")
 source("https://bioconductor.org/biocLite.R")
 biocLite("MoonlightR")
 ```
