@@ -1,6 +1,6 @@
 Package: MoonlightR
 Type: Package
-Title: Identify oncogenes and tumor suppressor genes from genomic (gene expression) data
+Title: Identify oncogenes and tumor suppressor genes from omics data
 Version:  0.99.1
 Date: 09-06-2016
 Author: Antonio Colaprico*,
@@ -34,9 +34,10 @@ Imports:
   graphics,
   TCGAbiolinks,
   GEOquery,
-  stats
-Description: We developed an R/Bioconductor package called Moonlight to address these challenges and offer solutions by using a guided workflow 
-             to allow users to perform functional enrichment analysis (FEA) and upstream regulator analysis (URA).
+  stats,
+  RISmed
+Description: We developed an R/Bioconductor package called Moonlight for identification of dual-role cancer driver genes.
+    We offer solutions by using a guided workflow allowing users to perform functional enrichment analysis (FEA) and upstream regulator analysis (URA).
 License: GPL (>= 3)
 biocViews: DNAMethylation,
     DifferentialMethylation,

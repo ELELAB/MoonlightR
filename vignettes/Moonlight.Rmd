@@ -567,30 +567,21 @@ The user can perform a literature phenotype analysis using the function `LPA`.
 require(MoonlightR)
 data("DiseaseList")
 data("DEGsmatrix")
+BPselected <- "apoptosis"
 
-DiseaseListNew <- list()
-BPselected <- c("apoptosis","proliferation of cells")
+BPannotations <- DiseaseList[[which(names(DiseaseList) == BPselected)]]$ID
 
-for ( i in 1:length(BPselected)){
-  BPannotations <- DiseaseList[[which(names(DiseaseList) == BPselected[i])]]$ID
-  dataLPA <- LPA(dataDEGs = DEGsmatrix,
-               BP =  BPselected[i],
+dataLPA <- LPA(dataDEGs = DEGsmatrix,
+               BP =  BPselected[1:20],
                BPlist = BPannotations)
-  DiseaseListNew[[length(DiseaseListNew)+1]] <- dataLPA
-  names(DiseaseListNew)[[i]] <- BPselected[i]
-  }
-  
-DiseaseList10 <- DiseaseList
-DiseaseList <- DiseaseListNew
+```
 
-DiseaseList <- DiseaseList10
-dataFEA <- FEA(DEGsmatrix = DEGsmatrix)
+A results from LPA is shown below:
 
-data(DiseaseList)
-plotFEA(dataFEA = dataFEA,
-        plotNAME = "FEAplot",
-        height = 20,width = 10,
-        topBP = 2)
+```{r, eval = TRUE, echo = FALSE}
+knitr::kable(DiseaseList[[1]][1:10,c(1,3:5)], digits = 2, 
+             caption = "Table LPA",
+             row.names = FALSE)
 ```
 
 
@@ -833,7 +824,7 @@ library(MoonlightR)
 
 listMoonlight <- NULL
 for (i in 1:4){
-    dataDual <- moonlight(cancerType = "LUSC", 
+    dataDual <- moonlight(cancerType = "BRCA", 
                       dataType = "Gene expression",
                       directory = "data",
                       nSample = 10,

@@ -14,7 +14,7 @@ LPA(dataDEGs, BP, BPlist)
 \item{BPlist}{is list of genes annotated in BP}
 }
 \value{
-table with number of pubmed that affects, increase or decrase genes annotated in BP
+table with number of pubmed that affects, increase or decrease genes annotated in BP
 }
 \description{
 This function carries out the literature phenotype analysis (LPA)

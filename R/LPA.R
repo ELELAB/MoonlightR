@@ -9,7 +9,7 @@
 #' @importFrom utils txtProgressBar
 #' @importFrom utils setTxtProgressBar
 #' @export
-#' @return table with number of pubmed that affects, increase or decrase genes annotated in BP
+#' @return table with number of pubmed that affects, increase or decrease genes annotated in BP
 LPA <- function (dataDEGs, BP, BPlist) {
     
   BPgenesDEGs <- intersect(BPlist, rownames(dataDEGs))
