@@ -399,7 +399,7 @@ grid.raster(img)
 
 The proposed pipeline consists of following eight steps:
 
-1. **get.data.TCGA** for Data collection: expression levels of genes in all samples obtained with IlluminaHiSeq RNASeqV2 in 18 normal tissues (NT) and 18 cancer tissues (CT) according to TCGA criteria, and GEO data set matched to one of the 18 given TCGA cancer types as described in following Table TCGA / GEO.
+1. **getDataTCGA** for Data collection: expression levels of genes in all samples obtained with IlluminaHiSeq RNASeqV2 in 18 normal tissues (NT) and 18 cancer tissues (CT) according to TCGA criteria, and GEO data set matched to one of the 18 given TCGA cancer types as described in following Table TCGA / GEO.
 2. **DPA** Differential Phenotype Analysis (DEA) to identify genes or probes that are different significantly with two phenotypes such as normal and tumor, or normal and stageI, normal and molecular subtype.
 3. **FEA** Functional Enrichment Analysis (EA), using Fisher's test, to identify gene sets (with biological functions linked to cancer<sup>1</sup>) significantly enriched by RG.
 4. **GRN** Gene regulatory network inferred between each single DEG (sDEG) and all genes obtained by means of mutual information, obtaining for each DEG a list of regulated genes (RG).
@@ -435,28 +435,28 @@ Related publications to this package:
 # `Download`: Get TCGA data
 
 
-You can search TCGA data using the `get.data.TCGA` function.
+You can search TCGA data using the `getDataTCGA` function.
 
 
-## `get.data.TCGA`: Searching by cancer type and data type [Gene Expression]
-The user can query and download the cancer types supported by TCGA, using the function `get.data.TCGA`:
+## `getDataTCGA`: Searching by cancer type and data type [Gene Expression]
+The user can query and download the cancer types supported by TCGA, using the function `getDataTCGA`:
 In this example we used LUAD gene expression data with only 10 samples to reduce time downloading.
 
 ```{r, eval = FALSE}
 
-dataFilt <- get.data.TCGA(cancerType = "LUAD", 
+dataFilt <- getDataTCGA(cancerType = "LUAD", 
                           dataType = "Gene expression",
                           directory = "data",
                           nSample = 10)
 ```
 
-## `get.data.TCGA`: Searching by cancer type and data type [Methylation]
-The user can also query and download methylation data using the function `get.data.TCGA`:
+## `getDataTCGA`: Searching by cancer type and data type [Methylation]
+The user can also query and download methylation data using the function `getDataTCGA`:
 
 
 ```{r, eval = FALSE}
 
-dataFilt <- get.data.TCGA(cancerType = "LUAD", 
+dataFilt <- getDataTCGA(cancerType = "LUAD", 
                           dataType = "Methylation", 
                           directory = "test", 
                           nSample = 10)
@@ -465,7 +465,7 @@ dataFilt <- get.data.TCGA(cancerType = "LUAD",
 
 # `Download`: Get GEO data
 
-You can search GEO data using the `get.data.GEO` function.
+You can search GEO data using the `getDataGEO` function.
 
 GEO_TCGAtab a 18x12 matrix that provides the GEO data set we matched to one of the 18 given TCGA cancer types 
 
@@ -478,17 +478,17 @@ knitr::kable(GEO_TCGAtab, digits = 2,
 
 
 
-## `get.data.GEO`: Searching by cancer type and data type [Gene Expression]
-The user can query and download the cancer types supported by GEO, using the function `get.data.GEO`:
+## `getDataGEO`: Searching by cancer type and data type [Gene Expression]
+The user can query and download the cancer types supported by GEO, using the function `getDataGEO`:
 
 ```{r, eval = TRUE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
 library(MoonlightR)
-dataFilt <- get.data.GEO(GEOobject = "GSE20347",platform = "GPL571")
+dataFilt <- getDataGEO(GEOobject = "GSE20347",platform = "GPL571")
 ```
 
 ```{r, eval = TRUE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
 library(MoonlightR)
-dataFilt <- get.data.GEO(TCGAtumor = "ESCA")
+dataFilt <- getDataGEO(TCGAtumor = "ESCA")
 ```
 
 # `Analysis`: To analyze TCGA data
@@ -520,7 +520,7 @@ cancerGEO <- GEO_TCGAtab$Dataset[i]
 cancerPLT <-GEO_TCGAtab$Platform[i]
 fileCancerGEO <- paste0(cancer,"_GEO_",cancerGEO,"_",cancerPLT, ".RData")
 
-dataFilt <- get.data.GEO(TCGAtumor = cancer)
+dataFilt <- getDataGEO(TCGAtumor = cancer)
 
 GEOdegs <- DPA(dataConsortium = "GEO",
                gset = dataFilt ,
@@ -683,7 +683,7 @@ library(MoonlightR)
 
 CosmicGenes <- c(knownDriverGenes$OCG, knownDriverGenes$TSG)
    
-dataFilt <- get.data.TCGA(cancerType = "BRCA", 
+dataFilt <- getDataTCGA(cancerType = "BRCA", 
                           dataType = "Gene expression",
                           directory = "data",
                           nSample = 10)
@@ -749,7 +749,7 @@ The code is divided in 4 case study:
 ```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
 library(MoonlightR)
 
-dataFilt <- get.data.TCGA(cancerType = "LUAD", 
+dataFilt <- getDataTCGA(cancerType = "LUAD", 
                           dataType = "Gene expression",
                           directory = "data",
                           nSample = 10)
@@ -882,7 +882,7 @@ CancerSubtypes <- names(table(dataSubt_Cancer[,colSubtype]))
 subtype <- CancerSubtypes[1]
 dataSmSubt <- dataSubt_Cancer[dataSubt_Cancer$PAM50.mRNA %in% subtype,]
 
-dataFilt <- get.data.TCGA(cancerType = cancerType, 
+dataFilt <- getDataTCGA(cancerType = cancerType, 
                           dataType = "Gene expression",
                           directory = "data",
                           nSample = 10,

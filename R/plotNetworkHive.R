@@ -4,8 +4,7 @@
 #' @param dataGRN output GRN function
 #' @param namesGenes list TSG and OCG to define axes
 #' @param thres threshold of edges to be included
-#' @importFrom HiveR plotHive
-#' @importFrom HiveR adj2HPD
+#' @import HiveR
 #' @importFrom graphics plot.new
 #' @export
 #' @return no results Hive plot is executed

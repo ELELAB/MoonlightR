@@ -4,8 +4,7 @@
 #' @param dataDEGs is output from DEA
 #' @param BP is biological process
 #' @param BPlist is list of genes annotated in BP
-#' @importFrom RISmed EUtilsSummary
-#' @importFrom RISmed EUtilsGet 
+#' @import RISmed 
 #' @importFrom utils txtProgressBar
 #' @importFrom utils setTxtProgressBar
 #' @export

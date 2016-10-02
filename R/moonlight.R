@@ -54,7 +54,7 @@ moonlight <- function(cancerType="panCancer", dataType="Gene expression",
         print("-----------------------------------------")
         print(paste("cancer type:", cancer.i))
 
-        dataFilt <- get.data.TCGA(cancerType = cancer.i, dataType = dataType, 
+        dataFilt <- getDataTCGA(cancerType = cancer.i, dataType = dataType, 
                                   directory = directory, cor.cut = cor.cut, qnt.cut = qnt.cut, 
                                   nSample = nSample,stage = stage, 
                                   subtype = subtype, samples = samples)

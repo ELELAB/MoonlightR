@@ -2,7 +2,7 @@
 #'
 #' This function carries out the differential phenotypes analysis
 #' @param dataConsortium is TCGA or GEO, default TCGA
-#' @param dataFilt  obtained from get.data.TCGA
+#' @param dataFilt  obtained from getDataTCGA
 #' @param dataType  selected
 #' @param fdr.cut is a threshold to filter DEGs according their p-value corrected
 #' @param logFC.cut is a threshold to filter DEGs according their logFC

@@ -20,6 +20,6 @@ return GEO gset
 This function retrieves and prepares GEO data
 }
 \examples{
-dataDEGs <-  get.data.GEO(GEOobject = "GSE20347",platform = "GPL571")
+dataDEGs <-  getDataGEO(GEOobject = "GSE20347",platform = "GPL571")
 }
 
