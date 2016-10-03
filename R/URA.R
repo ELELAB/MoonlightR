@@ -4,7 +4,10 @@
 #' @param dataGRN output GNR function
 #' @param DEGsmatrix output DPA function
 #' @param BPname biological processes
+#' @param nCores number of cores to use
 #' @importFrom stats fisher.test
+#' @import doParallel
+#' @import foreach
 #' @export
 #' @return an adjacent matrix
 #' @examples
@@ -17,7 +20,8 @@
 #' DEGsmatrix = dataDEGs, 
 #' BPname = c("apoptosis",
 #' "proliferation of cells"))
-URA <- function(dataGRN, DEGsmatrix, BPname){
+URA <- function(dataGRN, DEGsmatrix, BPname, nCores = 1){
+    doParallel::registerDoParallel(cores = nCores)
     if(is.null(BPname)){
         BPname <- names(DiseaseList)
     }
@@ -25,24 +29,22 @@ URA <- function(dataGRN, DEGsmatrix, BPname){
     tRlist <- rownames(dataGRN$miTFGenes)
      # lf <- names(DiseaseList)
 
-    TableDiseases <- matrix(0, nrow = length(tRlist), ncol = length(BPname), dimnames = list(tRlist, BPname))
+    pb <- txtProgressBar(min = 0, max = length(tRlist), style = 3)
 
-    pb <- txtProgressBar(min = 0, max = nrow(TableDiseases), style = 3)
-
-    for(j in 1:nrow(TableDiseases)) {
-        currentTF <- as.character(rownames(TableDiseases)[j] )
+    TableDiseases <- foreach(j = 1:length(tRlist), .combine = "rbind", .packages="foreach") %dopar% {
+        currentTF <- as.character(tRlist[j] )
         currentTF_regulon <- names(which(dataGRN$miTFGenes[currentTF,] > as.numeric(dataGRN$maxmi[currentTF])))
         currentTF_regulon <- as.matrix(currentTF_regulon)
         DEGsregulon <- intersect(rownames(DEGsmatrix), currentTF_regulon)
         if(length(DEGsregulon) > 2){
         tabFEA <- FEA(BPname = BPname, DEGsmatrix = DEGsmatrix[DEGsregulon,])
-        TableDiseases[j,] <- tabFEA$Activation.z.score
+        return(tabFEA$Activation.z.score)
+        }else{
+            return(rep(0, length(BPname)))
         }
-        else { TableDiseases[j,] <- 0}
     }
-
+    dimnames(TableDiseases) <- list(tRlist, BPname)
+ 
     close(pb)
-
     return(TableDiseases)
-
 }

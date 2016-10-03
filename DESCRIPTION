@@ -18,6 +18,8 @@ Author: Antonio Colaprico*,
 Maintainer:  Antonio Colaprico <antonio.colaprico@ulb.ac.be>, Catharina Olsen <colsen@ulb.ac.be>          
 Depends:
     R (>= 3.3),
+    doParallel,
+  foreach
 Imports:
 	parmigene,
   randomForest,
