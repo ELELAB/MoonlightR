@@ -15,7 +15,7 @@
 #' @examples 
 #' plotCircos(listMoonlight = listMoonlight, additionalFilename = "_ncancer5")
 
-plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = NULL, intensityColOCG = 0.5, intensityColTSG = 0.5, intensityColDual = 0.5){
+plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = NULL, intensityColOCG = 0.5, intensityColTSG = 0.5, intensityColDual = 0.5, fontSize=1){
 
     ### prepare data
     n <- length(listMoonlight)
@@ -56,7 +56,7 @@ plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = 
     df1 <- data.frame("order" =c(1:n), "cancertype"=mynames, "xmin"=rep(0,n), "xmax"=n.mygenes)
 
     ### Plot sectors (outer part)
-    par(mar=rep(0,4))
+    par(mar=c(1,1,6,6))
     circlize::circos.clear()
 
     ### Basic circos graphic parameters
@@ -86,7 +86,7 @@ plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = 
                         aa = c(1, 0.5)
                         if(theta < 90 || theta > 270)  aa = c(0, 0.5)
 
-                        circlize::circos.text(x=mean(xlim), y=1.7, labels=paste0(name,"(",sapply(myocg,length)[i],", ",sapply(mytsg,length)[i],")"), facing = dd, cex=0.75,  adj = aa)
+                        circlize::circos.text(x=mean(xlim), y=1.7, labels=paste0(name,"\n(",sapply(myocg,length)[i],", ",sapply(mytsg,length)[i],")"), facing = dd, cex=fontSize,  adj = aa)
 
                         #plot main sector
                         # print(df1$rcol[i])
