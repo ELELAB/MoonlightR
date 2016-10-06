@@ -21,7 +21,9 @@
 #' BPname = c("apoptosis",
 #' "proliferation of cells"))
 URA <- function(dataGRN, DEGsmatrix, BPname, nCores = 1){
-    doParallel::registerDoParallel(cores = nCores)
+doParallel::registerDoParallel(cores = nCores)
+ 
+  
     if(is.null(BPname)){
         BPname <- names(DiseaseList)
     }
@@ -32,6 +34,7 @@ URA <- function(dataGRN, DEGsmatrix, BPname, nCores = 1){
     pb <- txtProgressBar(min = 0, max = length(tRlist), style = 3)
 
     TableDiseases <- foreach(j = 1:length(tRlist), .combine = "rbind", .packages="foreach") %dopar% {
+      setTxtProgressBar(pb, j)
         currentTF <- as.character(tRlist[j] )
         currentTF_regulon <- names(which(dataGRN$miTFGenes[currentTF,] > as.numeric(dataGRN$maxmi[currentTF])))
         currentTF_regulon <- as.matrix(currentTF_regulon)
