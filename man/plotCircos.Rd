@@ -5,7 +5,8 @@
 \title{plotCircos}
 \usage{
 plotCircos(listMoonlight, listMutation = NULL, additionalFilename = NULL,
-  intensityColOCG = 0.5, intensityColTSG = 0.5, intensityColDual = 0.5)
+  intensityColOCG = 0.5, intensityColTSG = 0.5, intensityColDual = 0.5,
+  fontSize = 1)
 }
 \arguments{
 \item{listMoonlight}{output Moonlight function}

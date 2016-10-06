@@ -837,7 +837,7 @@ names(tmp) <- names(listMoonlight)
 
  mutation <- GDCquery_Maf(tumor = "BRCA")    
 
- plotCircos(listMoonlight=listMoonlight,listMutation=res.mutation, additionalFilename="proc2_wmutation", intensityColOCG=0.05)
+ plotCircos(listMoonlight=listMoonlight,listMutation=res.mutation, additionalFilename="proc2_wmutation", intensityColDual=0.2)
 ```
 The results of the moonlight pipeline can be visualized with a circos plot.
 Outer ring: color by cancer type, Inner ring: OCGs and TSGs, 
