@@ -773,7 +773,8 @@ grid.raster(img)
 ```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
 setwd("/Users/antoniocolaprico/Dropbox/IB2_postdoc/Github/Moonlight/")
 load("/Users/antoniocolaprico/Dropbox/IB2_postdoc/Github/PackageTesting/TCGAbiolinks/data/geneInfo.rda")
-
+require(MoonlightR)
+require(TCGAbiolinks)
 mutation <- GDCquery_Maf(tumor = "BRCA")
 
 
