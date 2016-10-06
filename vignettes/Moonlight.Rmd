@@ -452,10 +452,10 @@ The user can also query and download methylation data using the function `getDat
 
 
 ```{r, eval = FALSE}
+setwd("~/Dropbox/IB2_postdoc/Github/Moonlight/")
 dataFilt <- getDataTCGA(cancerType = "LUAD", 
                           dataType = "Methylation", 
-                          directory = "test", 
-                          nSample = 10)
+                          directory = "data")
 ```
 
 
@@ -771,9 +771,16 @@ grid.raster(img)
 ## Case study n. 3: Downstream analysis BRCA with stages
 
 ```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
+setwd("/Users/antoniocolaprico/Dropbox/IB2_postdoc/Github/Moonlight/")
+load("/Users/antoniocolaprico/Dropbox/IB2_postdoc/Github/PackageTesting/TCGAbiolinks/data/geneInfo.rda")
+require(MoonlightR)
+require(TCGAbiolinks)
+mutation <- GDCquery_Maf(tumor = "BRCA")
+
+
 listMoonlight <- NULL
 for (i in 1:4){
-    dataDual <- moonlight(cancerType = "LUSC", 
+    dataDual <- moonlight(cancerType = "BRCA", 
                       dataType = "Gene expression",
                       directory = "data",
                       nSample = 10,
@@ -785,6 +792,16 @@ for (i in 1:4){
     save(dataDual, file = paste0("dataDual_stage",as.roman(i), ".Rdata"))
 }
 names(listMoonlight) <- c("stage1", "stage2", "stage3", "stage4")
+
+
+
+tmp <- NULL
+tmp <- c(tmp, list(listMoonlight[[1]][[1]]))
+tmp <- c(tmp, list(listMoonlight[[2]][[1]]))
+tmp <- c(tmp, list(listMoonlight[[3]][[1]]))
+tmp <- c(tmp, list(listMoonlight[[4]][[1]]))
+names(tmp) <- names(listMoonlight)
+
 
 plotCircos(listMoonlight = listMoonlight, additionalFilename = "_stages")
 ```
@@ -835,7 +852,8 @@ dataDual <- moonlight(cancerType =cancerType,
                       nTF = 100,
                       DiffGenes = TRUE,
                       BPname = c("apoptosis","proliferation of cells"))
-                
+  
+mutation <- GDCquery_Maf(tumor = "BRCA")              
 
 ```
 
@@ -848,6 +866,29 @@ knitr::kable(lgg.gbm.subtype[1:10,c(1,2,3,4)], digits = 2,
              row.names = TRUE)
 ```
 
+
+## Moonlight working with mutation data.
+
+In this section we showed downstream analysis with replication of Moonlight in TCGA's data within comparison of different molecular subtypes and normal samples.
+You can use the function `GDCquery_Maf` from TCGAbiolinks to retrieve this information.
+
+
+```{r, eval = FALSE, echo = FALSE}
+# Check with subtypes from TCGAprepare and update examples
+require(TCGAbiolinks)
+  
+mutation <- GDCquery_Maf(tumor = "BRCA")              
+
+```
+
+A subset of the lgg subytpe is shown below:
+
+```{r, eval = TRUE, echo = FALSE}
+lgg.gbm.subtype <- TCGAquery_subtype(tumor = "lgg")
+knitr::kable(lgg.gbm.subtype[1:10,c(1,2,3,4)], digits = 2, 
+             caption = "Table with LGG molecular subtypes from TCGAquery_subtype",
+             row.names = TRUE)
+```
 
 
 ******
