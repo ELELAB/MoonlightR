@@ -12,6 +12,14 @@ plotCircos(listMoonlight, listMutation = NULL, additionalFilename = NULL,
 \item{listMoonlight}{output Moonlight function}
 
 \item{additionalFilename}{additionalFilename}
+
+\item{intensityColOCG}{intensityColOCG}
+
+\item{intensityColTSG}{intensityColTSG}
+
+\item{intensityColDual}{intensityColDual}
+
+\item{fontSize}{fontSize}
 }
 \value{
 no return value, plot is saved

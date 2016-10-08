@@ -8,19 +8,7 @@
 #' @return heatmap
 #' @export
 #' @examples 
-#' dataDEGs <- DEGsmatrix
-#' dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
-#' DEGsmatrix = dataDEGs,
-#' DiffGenes = TRUE,
-#' normCounts = dataFilt)
-#' dataURA <-URA(dataGRN = dataGRN,
-#' DEGsmatrix = dataDEGs, 
-#' BPname = c("apoptosis",
-#' "proliferation of cells"))
-#' dataDual <-PRA(dataURA = dataURA, 
-#' BPname = c("apoptosis",
-#' "proliferation of cells"),
-#' thres.role = 1)
+#' data(dataURA)
 #' plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],plotNAME = "URAplot")
 plotURA<- function(dataURA, plotNAME = 'URAplot'){    
     if(nrow(dataURA)>70){

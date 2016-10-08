@@ -4,6 +4,8 @@
 #' @param exp_data expression data where the activity of the signatures needs to be evaluated
 #' @param signature in gmt format
 #' @param path absolute path to MoonlightR folder
+#' @importFrom utils write.table
+#' @importFrom utils read.table
 #' @export 
 #' @return matrix of roma scores
 #' @examples 

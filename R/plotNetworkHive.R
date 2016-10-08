@@ -6,6 +6,7 @@
 #' @param thres threshold of edges to be included
 #' @import HiveR
 #' @importFrom graphics plot.new
+#' @importFrom grid gpar
 #' @export
 #' @return no results Hive plot is executed
 #' @examples

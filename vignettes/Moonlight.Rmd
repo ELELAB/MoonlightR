@@ -453,9 +453,9 @@ The user can also query and download methylation data using the function `getDat
 
 ```{r, eval = FALSE}
 setwd("~/Dropbox/IB2_postdoc/Github/Moonlight/")
-dataFilt <- getDataTCGA(cancerType = "LUAD", 
+dataFilt <- getDataTCGA(cancerType = "TCGA-BRCA", 
                           dataType = "Methylation", 
-                          directory = "data")
+                          directory = "data",nSample = 5)
 ```
 
 
@@ -800,7 +800,7 @@ mutation <- GDCquery_Maf(tumor = "BRCA")
 
 
   dataClin <- GDCquery_clinic(project = "TCGA-BRCA",type = "clinical_patient")
-                
+  dataClin <- GDCquery_clinic(project = "TCGA-HNSC",type = "clinical_patient")              
 
 
 res.mutation <- NULL
@@ -837,7 +837,7 @@ names(tmp) <- names(listMoonlight)
 
  mutation <- GDCquery_Maf(tumor = "BRCA")    
 
- plotCircos(listMoonlight=listMoonlight,listMutation=res.mutation, additionalFilename="proc2_wmutation", intensityColDual=0.2)
+ plotCircos(listMoonlight=listMoonlight,listMutation=res.mutation, additionalFilename="proc2_wmutation", intensityColDual=0.2,fontSize = 2)
 ```
 The results of the moonlight pipeline can be visualized with a circos plot.
 Outer ring: color by cancer type, Inner ring: OCGs and TSGs, 
@@ -887,6 +887,57 @@ dataDual <- moonlight(cancerType =cancerType,
                       DiffGenes = TRUE,
                       BPname = c("apoptosis","proliferation of cells"))
             
+
+
+# Prepare mutation's data for subtypes
+
+mutation <- GDCquery_Maf(tumor = "BRCA")
+
+
+  cancerType <- "BRCA"
+dataSubt <- TCGAquery_subtype(tumor = "all")
+dataSubt_Cancer <- dataSubt[dataSubt$Disease %in% cancerType,]
+colSubtype <- "PAM50.mRNA"
+
+CancerSubtypes <- names(table(dataSubt_Cancer[,colSubtype]))
+
+load("~/Dropbox/IB2_postdoc/Github/TCGA/AnalysisFilt/BRCA_IlluminaHiSeq_RNASeqV2_Filt.rda")
+
+res.mutation <- NULL
+  for (i in 1: length(CancerSubtypes)){
+
+    dataSmTP <- colnames(dataFilt)
+
+  subtype <- CancerSubtypes[i]
+  dataSmSubt <- dataSubt_Cancer[dataSubt_Cancer$PAM50.mRNA %in% subtype,]
+
+
+dataSubtC <- dataSmTP[substr(dataSmTP,1,12) %in% dataSmSubt$patient]
+dataSmTP <- dataSubtC
+
+                info.mutation <- mutation[mutation$Tumor_Sample_Barcode %in% dataSmTP,]
+  
+     ind <- which(info.mutation[,"Consequence"]=="inframe_deletion")
+     ind2 <- which(info.mutation[,"Consequence"]=="inframe_insertion")
+     ind3 <- which(info.mutation[,"Consequence"]=="missense_variant")
+    res.mutation <- c(res.mutation, list(info.mutation[c(ind, ind2, ind3),c(1,51)]))
+	}
+names(res.mutation) <-names(listMoonlight)
+
+
+tmp <- NULL
+tmp <- c(tmp, list(listMoonlight[[1]][[1]]))
+tmp <- c(tmp, list(listMoonlight[[2]][[1]]))
+tmp <- c(tmp, list(listMoonlight[[3]][[1]]))
+tmp <- c(tmp, list(listMoonlight[[4]][[1]]))
+names(tmp) <- names(listMoonlight)
+
+ mutation <- GDCquery_Maf(tumor = "BRCA")    
+
+ plotCircos(listMoonlight=listMoonlight,listMutation=res.mutation, additionalFilename="proc2_wmutation", intensityColDual=0.2,fontSize = 2)
+
+ plotCircos(listMoonlight=listMoonlight, additionalFilename="brca_subtypes", intensityColDual=0.2,fontSize = 2)
+
 ```
 
 A subset of the lgg subytpe is shown below:

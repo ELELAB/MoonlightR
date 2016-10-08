@@ -21,6 +21,9 @@
 PRA <- function(dataURA, BPname, thres.role = 0, seed=12345){
     set.seed(seed)
 
+  tabGrowBlock <- get("tabGrowBlock")
+  knownDriverGenes <- get("knownDriverGenes") 
+  
     names.blocking <- tabGrowBlock[which(tabGrowBlock$Cancer.blocking == "Increasing"), "Disease"]
     names.growing <- tabGrowBlock[which(tabGrowBlock$Cancer.growing == "Increasing"), "Disease"]
 
