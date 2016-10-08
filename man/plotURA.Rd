@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotURA.R
 \name{plotURA}
 \alias{plotURA}
-\title{plotURA: Upstream regulatory analysis plot}
+\title{plotURA: Upstream regulatory analysis heatmap plot}
 \usage{
 plotURA(dataURA, plotNAME = "URAplot")
 }

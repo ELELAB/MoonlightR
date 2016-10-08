@@ -229,5 +229,5 @@ plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = 
         }
     }
 
-    dev.off()
+    if (!(is.null(dev.list()["RStudioGD"]))){graphics.off()}
 }

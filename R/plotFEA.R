@@ -65,5 +65,5 @@ plotFEA <- function(dataFEA, topBP = 10,plotNAME = "test",height,width,
        labels = paste(tmp$Diseases.or.Functions.Annotation, " (n=", tmp$commonNg, ")", sep = ""), cex = 1)
 
 
-    dev.off()
+    if (!(is.null(dev.list()["RStudioGD"]))){graphics.off()}
 }

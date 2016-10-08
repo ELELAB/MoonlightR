@@ -50,7 +50,7 @@ GSEA <- function (DEGsmatrix, top, plot = FALSE){
   topID <- res[1,1]
  pdf("GSEAplot.pdf")
   DOSE::plot(y, geneSetID = topID)
-  dev.off()
+  if (!(is.null(dev.list()["RStudioGD"]))){graphics.off()}
   }
 
   return(res)

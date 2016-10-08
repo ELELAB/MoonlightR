@@ -49,5 +49,5 @@ plotNetworkHive <- function(dataGRN, namesGenes, thres){
 
     pdf("networkHive.pdf")
     HiveR::plotHive(myadj, axLabs = c("remaining TFs", "OCG", "TSG"), bkgnd="white", anNode.gpar=gpar(fontsize = 10, col = "black", lwd = 0.5))
-    dev.off()
+    if (!(is.null(dev.list()["RStudioGD"]))){graphics.off()}
 }
