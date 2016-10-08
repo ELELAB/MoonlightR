@@ -23,6 +23,8 @@
 URA <- function(dataGRN, DEGsmatrix, BPname, nCores = 1){
 doParallel::registerDoParallel(cores = nCores)
  
+  #globalVariables('j')
+  
   DiseaseList <- get("DiseaseList")
   
     if(is.null(BPname)){
@@ -34,6 +36,8 @@ doParallel::registerDoParallel(cores = nCores)
 
     pb <- txtProgressBar(min = 0, max = length(tRlist), style = 3)
 
+    j <- NULL
+    
     TableDiseases <- foreach(j = 1:length(tRlist), .combine = "rbind", .packages="foreach") %dopar% {
       #setTxtProgressBar(pb, j)
         currentTF <- as.character(tRlist[j] )

@@ -23,6 +23,5 @@ dataDual <- PRA(dataURA = dataURA,
 BPname = c("apoptosis","proliferation of cells"),
 thres.role = 0)
 plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],plotNAME = "URAplot")
-if (!(is.null(dev.list()["RStudioGD"]))){dev.off()}
 }
 

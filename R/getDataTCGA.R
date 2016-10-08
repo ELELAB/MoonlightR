@@ -112,6 +112,7 @@ getDataTCGA <- function(cancerType, dataType, directory,
                                    save.filename = FileNameData)
         }else{
             load(FileNameData)
+            data <- get("data")
             RSEobject <- data
         }
 
