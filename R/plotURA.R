@@ -13,6 +13,7 @@
 #' BPname = c("apoptosis","proliferation of cells"),
 #' thres.role = 0)
 #' plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],plotNAME = "URAplot")
+#' if (!(is.null(dev.list()["RStudioGD"]))){dev.off()}
 plotURA<- function(dataURA, plotNAME = 'URAplot'){    
     if(nrow(dataURA)>70){
         cexRow <- 0.1 + 1/(2*nrow(dataURA))*(log10(nrow(dataURA)))
