@@ -35,7 +35,7 @@ getDataTCGA <- function(cancerType, dataType, directory,
 
   DiseaseList <- get("DiseaseList")
   GDCprojects <- get("GDCprojects")
-  
+  geneInfo <- get("geneInfo")
   
     set.seed(seed)
     CancerProject <- paste0("TCGA-",cancerType)

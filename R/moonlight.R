@@ -42,7 +42,7 @@ moonlight <- function(cancerType="panCancer", dataType="Gene expression",
                       stage = NULL,subtype = 0, samples = NULL){
 
     if(length(cancerType) == 1 && cancerType == "panCancer"){
-        cancerType <- sort(sapply(strsplit(grep("TCGA",TCGAbiolinks:::getGDCprojects()$project_id,value=TRUE),"TCGA-"),"[",2))
+        cancerType <- sort(sapply(strsplit(grep("TCGA",GDCprojects,value=TRUE),"TCGA-"),"[",2))
     }
 
     res <- NULL

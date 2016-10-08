@@ -11,6 +11,8 @@ plotCircos(listMoonlight, listMutation = NULL, additionalFilename = NULL,
 \arguments{
 \item{listMoonlight}{output Moonlight function}
 
+\item{listMutation}{listMutation}
+
 \item{additionalFilename}{additionalFilename}
 
 \item{intensityColOCG}{intensityColOCG}

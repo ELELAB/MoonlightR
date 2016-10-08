@@ -19,6 +19,9 @@ This function visualizes the URA in a heatmap
 }
 \examples{
 data(dataURA)
+dataDual <- PRA(dataURA = dataURA,
+BPname = c("apoptosis","proliferation of cells"),
+thres.role = 0)
 plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],plotNAME = "URAplot")
 }
 
