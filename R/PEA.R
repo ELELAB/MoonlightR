@@ -30,6 +30,6 @@ PEA <- function(listMoonlight){
     # data(gcSample)
     res <- compareCluster(list.genes, fun="enrichPathway")
     plot(res)
-    dev.off()
+    if( (which = dev.cur()) != 1){graphics.off() }
 
 }

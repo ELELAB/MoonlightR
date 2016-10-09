@@ -14,7 +14,7 @@
 #' @importFrom circlize circos.clear
 #' @importFrom circlize circos.initialize
 #' @importFrom circlize circos.trackPlotRegion get.cell.meta.data circos.text circos.rect
-#' @importFrom grDevices dev.off pdf rainbow rgb
+#' @importFrom grDevices dev.cur dev.off pdf rainbow rgb
 #' @export
 #' @return no return value, plot is saved
 #' @examples 
@@ -229,5 +229,6 @@ plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = 
         }
     }
 
-    if (!(is.null(dev.list()["RStudioGD"]))){graphics.off()}
-}
+    if( (which = dev.cur()) != 1){graphics.off() }
+
+    }
