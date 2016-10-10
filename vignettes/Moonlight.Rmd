@@ -438,24 +438,23 @@ You can search TCGA data using the `getDataTCGA` function.
 
 ## `getDataTCGA`: Searching by cancer type and data type [Gene Expression]
 The user can query and download the cancer types supported by TCGA, using the function `getDataTCGA`:
-In this example we used LUAD gene expression data with only 10 samples to reduce time downloading.
+In this example we used LUAD gene expression data with only 4 samples to reduce time downloading.
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 dataFilt <- getDataTCGA(cancerType = "LUAD", 
                           dataType = "Gene expression",
                           directory = "data",
-                          nSample = 10)
+                          nSample = 4)
 ```
 
 ## `getDataTCGA`: Searching by cancer type and data type [Methylation]
 The user can also query and download methylation data using the function `getDataTCGA`:
 
 
-```{r, eval = FALSE}
-setwd("~/Dropbox/IB2_postdoc/Github/Moonlight/")
+```{r, eval = TRUE}
 dataFilt <- getDataTCGA(cancerType = "TCGA-BRCA", 
                           dataType = "Methylation", 
-                          directory = "data",nSample = 5)
+                          directory = "data",nSample = 4)
 ```
 
 
@@ -477,11 +476,11 @@ knitr::kable(GEO_TCGAtab, digits = 2,
 ## `getDataGEO`: Searching by cancer type and data type [Gene Expression]
 The user can query and download the cancer types supported by GEO, using the function `getDataGEO`:
 
-```{r, eval = FALSE , echo = TRUE, results='hide', warning = FALSE, message = FALSE}
+```{r, eval = TRUE , echo = TRUE, results='hide', warning = FALSE, message = FALSE}
 dataFilt <- getDataGEO(GEOobject = "GSE20347",platform = "GPL571")
 ```
 
-```{r, eval = FALSE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
+```{r, eval = TRUE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
 dataFilt <- getDataGEO(TCGAtumor = "ESCA")
 ```
 
@@ -504,8 +503,9 @@ dataDEGs <- DPA(dataFilt = dataFilt,
 
 For gene expression data, DPA dealing with GEO data is running a differential expression analysis (DEA) to identify differentially expressed genes (DEGs) using  to the `eBayes` and `topTable` functions from \Biocpkg{limma}.
 
-```{r, eval = FALSE, echo = TRUE, hide=TRUE, results='hide', warning = FALSE, message = FALSE}
-
+```{r, eval = TRUE, echo = TRUE, hide=TRUE, results='hide', warning = FALSE, message = FALSE}
+require(MoonlightR)
+data(GEO_TCGAtab)
 DataAnalysisGEO<- "../GEO_dataset/"
 i<-5
 
@@ -633,7 +633,7 @@ grid.raster(img)
 
 Running moonlight with a list of already validated TSG and OCG. 
 
-```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
+```{r,eval=TRUE,echo=TRUE,message=FALSE,warning=FALSE}
 CosmicGenes <- c(knownDriverGenes$OCG, knownDriverGenes$TSG)
    
 dataFilt <- getDataTCGA(cancerType = "BRCA", 
@@ -692,7 +692,7 @@ The code is divided in 4 case study:
 
 ## Case study n. 1: Downstream analysis LUAD
 
-```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
+```{r,eval=TRUE,echo=TRUE,message=FALSE,warning=FALSE}
 dataFilt <- getDataTCGA(cancerType = "LUAD", 
                           dataType = "Gene expression",
                           directory = "data",
@@ -725,7 +725,7 @@ CancerGenes <- list("TSG"=names(dataDual$TSG), "OCG"=names(dataDual$OCG))
 ## `plotURA`: Upstream regulatory analysis plot
 The user can plot upstream regulatory analysis using the function `plotURA`.
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
  plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],plotNAME = "URAplot")
  ```
 
@@ -740,7 +740,7 @@ grid.raster(img)
 
 ## Case study n. 2: Expression pipeline Pan Cancer 5 cancer types
 
-```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
+```{r,eval=TRUE,echo=TRUE,message=FALSE,warning=FALSE}
 cancerList <- c("BLCA","COAD","ESCA","HNSC","STAD")
 
 listMoonlight <- moonlight(cancerType = cancerList, 
@@ -772,10 +772,7 @@ grid.raster(img)
 
 ## Case study n. 3: Downstream analysis BRCA with stages
 
-```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
-setwd("/Users/antoniocolaprico/Dropbox/IB2_postdoc/Github/Moonlight/")
-load("/Users/antoniocolaprico/Dropbox/IB2_postdoc/Github/PackageTesting/TCGAbiolinks/data/geneInfo.rda")
-load("/Users/antoniocolaprico/Downloads/BRCAlistMoonlight_stages-2.RData")
+```{r,eval=TRUE,echo=TRUE,message=FALSE,warning=FALSE}
 require(MoonlightR)
 require(TCGAbiolinks)
 
@@ -799,11 +796,6 @@ names(listMoonlight) <- c("stage1", "stage2", "stage3", "stage4")
 # Prepare mutation's data for stages
 
 mutation <- GDCquery_Maf(tumor = "BRCA")
-
-
-  dataClin <- GDCquery_clinic(project = "TCGA-BRCA",type = "clinical_patient")
-  dataClin <- GDCquery_clinic(project = "TCGA-HNSC",type = "clinical_patient")              
-
 
 res.mutation <- NULL
 for(stage in 1:4){
@@ -861,7 +853,7 @@ studies of various diseases. We have added some of the subtypes defined by these
 report in our package. The ACC[@ref22], BRCA [@ref11], COAD [@ref12], GBM [@ref8], HNSC [@ref14], KICH [@ref15], KIRC[@ref21], KIRP [@ref20], LGG [@ref8], LUAD [@ref9], 
 LUSC[@ref16], PRAD[@ref19], READ [@ref12],  SKCM [@ref13], STAD [@ref10], THCA [@ref18], UCEC [@ref17] tumors have data added. 
 
-```{r, eval = FALSE, echo = FALSE}
+```{r, eval = TRUE, echo = FALSE}
 # Check with subtypes from TCGAprepare and update examples
 cancerType <- "BRCA"
 dataSubt <- TCGAquery_subtype(tumor = "all")
@@ -902,8 +894,6 @@ dataSubt_Cancer <- dataSubt[dataSubt$Disease %in% cancerType,]
 colSubtype <- "PAM50.mRNA"
 
 CancerSubtypes <- names(table(dataSubt_Cancer[,colSubtype]))
-
-load("~/Dropbox/IB2_postdoc/Github/TCGA/AnalysisFilt/BRCA_IlluminaHiSeq_RNASeqV2_Filt.rda")
 
 res.mutation <- NULL
   for (i in 1: length(CancerSubtypes)){
@@ -958,21 +948,12 @@ In this section we showed downstream analysis with replication of Moonlight in T
 You can use the function `GDCquery_Maf` from TCGAbiolinks to retrieve this information.
 
 
-```{r, eval = FALSE, echo = FALSE}
+```{r, eval = TRUE, echo = FALSE}
 # Check with subtypes from TCGAprepare and update examples
 require(TCGAbiolinks)
   
 mutation <- GDCquery_Maf(tumor = "BRCA")              
 
-```
-
-A subset of the lgg subytpe is shown below:
-
-```{r, eval = TRUE, echo = FALSE}
-lgg.gbm.subtype <- TCGAquery_subtype(tumor = "lgg")
-knitr::kable(lgg.gbm.subtype[1:10,c(1,2,3,4)], digits = 2, 
-             caption = "Table with LGG molecular subtypes from TCGAquery_subtype",
-             row.names = TRUE)
 ```
 
 
