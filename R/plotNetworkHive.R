@@ -11,8 +11,9 @@
 #' @export
 #' @return no results Hive plot is executed
 #' @examples
-#' dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
-#' # to change with moonlight
+#' data(knownDriverGenes)
+#' data(dataGRN)
+#' plotNetworkHive(dataGRN = dataGRN, namesGenes = knownDriverGenes, thres = 0.55)
 plotNetworkHive <- function(dataGRN, namesGenes, thres){
 
     names.genes.all <- intersect(as.character(unique(c(unlist(namesGenes), rownames(dataGRN[[1]])))),colnames(dataGRN[[1]]))

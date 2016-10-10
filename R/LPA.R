@@ -9,6 +9,12 @@
 #' @importFrom utils setTxtProgressBar
 #' @export
 #' @return table with number of pubmed that affects, increase or decrase genes annotated in BP
+#' @examples
+#' data(DEGsmatrix)
+#' dataLPA <- LPA(dataDEGs = DEGsmatrix[1:50,],
+#'                  BP =  "apoptosis",
+#'                  BPlist = BPannotations)
+
 LPA <- function (dataDEGs, BP, BPlist) {
     
   BPgenesDEGs <- intersect(BPlist, rownames(dataDEGs))

@@ -1,4 +1,4 @@
-#' GSEA
+ #' GSEA
 #'
 #' This function carries out the GSEA enrichment analysis.
 #' @param DEGsmatrix DEGsmatrix output from DEA such as dataDEGs

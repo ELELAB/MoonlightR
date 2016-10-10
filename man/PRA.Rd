@@ -22,14 +22,9 @@ returns list of TSGs and OCGs when biological processes are provided, otherwise 
 This function carries out the pattern recognition analysis
 }
 \examples{
-dataDEGs <- DEGsmatrix
-dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
-DEGsmatrix = dataDEGs,
-DiffGenes = TRUE,
-normCounts = dataFilt)
-dataURA <-URA(dataGRN = dataGRN,
-DEGsmatrix = dataDEGs, 
-BPname = c("apoptosis",
-"proliferation of cells"))
+data(dataURA)
+dataDual <- PRA(dataURA = dataURA,
+BPname = c("apoptosis","proliferation of cells"),
+thres.role = 0)
 }
 

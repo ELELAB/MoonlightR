@@ -552,7 +552,7 @@ grid.raster(img)
 ## `LPA`: Literature Phenotype Analysis
 The user can perform a literature phenotype analysis using the function `LPA`. 
 
-```{r, eval = FALSE, echo = TRUE, results='hide'}
+```{r, eval = TRUE, echo = TRUE, results='hide'}
 data(DEGsmatrix)
 
 DiseaseListNew <- list()
@@ -560,7 +560,7 @@ BPselected <- c("apoptosis","proliferation of cells")
 
 for (i in 1:length(BPselected)){
   BPannotations <- DiseaseList[[which(names(DiseaseList) == BPselected[i])]]$ID
-  dataLPA <- LPA(dataDEGs = DEGsmatrix,
+  dataLPA <- LPA(dataDEGs = DEGsmatrix[1:50,],
                BP =  BPselected[i],
                BPlist = BPannotations)
   DiseaseListNew[[length(DiseaseListNew)+1]] <- dataLPA
@@ -616,7 +616,7 @@ dataURA <- URA(dataGRN = dataGRN,
 ## `PRA`: Pattern Regognition Analysis
 The user can retrieve TSG/OCG candidates using either selected biological processes or a random forest classifier trained on known COSMIC OCGs/TSGs.  
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 dataDual <- PRA(dataURA = dataURA,
                           BPname = c("apoptosis","proliferation of cells"),
                           thres.role = 0)
@@ -666,9 +666,10 @@ dataDual <-PRA(dataURA = dataURA,
 
 In the following plot the nodes are separated into three groups: known tumor suppressor genes (yellow), known oncogenes (green) and the rest (gray).
 
-```{r, eval = FALSE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
+```{r, eval = TRUE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
 data(knownDriverGenes)
-plotNetworkHive(dataGRN, knownDriverGenes, 0.75)
+data(dataGRN)
+plotNetworkHive(dataGRN, knownDriverGenes, 0.55)
 ```
 
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}

@@ -23,15 +23,13 @@ plotURA<- function(dataURA, plotNAME = "URAplot"){
         cexRow <- 0.2 +  1/(10*log10(nrow(dataURA)))
     }
 
+    pdf(file = paste0(plotNAME,".pdf"))
   
-    #pdf(file = paste0(plotNAME,".pdf"))
-
     par(oma=c(6,4,4,2))
-    gplots::heatmap.2(dataURA, trace="none", col=rev(gplots::redblue(128)), Colv = TRUE, dendrogram = "row", 
+    heatmap.2(dataURA, trace="none", col=rev(gplots::redblue(128)), Colv = TRUE, dendrogram = "row", 
     	 notecex=10/nrow(dataURA), cexCol =0.2 + 1/(3*log10(ncol(dataURA))), cexRow=cexRow,
     	 cellnote= signif(dataURA,4), notecol = "black",key=TRUE, keysize=2)   
 
-   # if( (which = dev.cur()) != 1){graphics.off() }
-
+    if( (which = dev.cur()) != 1){ graphics.off() }
 
 }

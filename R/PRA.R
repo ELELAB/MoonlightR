@@ -9,15 +9,10 @@
 #' @export
 #' @return returns list of TSGs and OCGs when biological processes are provided, otherwise a randomForest based classifier that can be used on new data
 #' @examples
-#' dataDEGs <- DEGsmatrix
-#' dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
-#' DEGsmatrix = dataDEGs,
-#' DiffGenes = TRUE,
-#' normCounts = dataFilt)
-#' dataURA <-URA(dataGRN = dataGRN,
-#' DEGsmatrix = dataDEGs, 
-#' BPname = c("apoptosis",
-#' "proliferation of cells"))
+#' data(dataURA)
+#' dataDual <- PRA(dataURA = dataURA,
+#' BPname = c("apoptosis","proliferation of cells"),
+#' thres.role = 0)
 PRA <- function(dataURA, BPname, thres.role = 0, seed=12345){
     set.seed(seed)
 
