@@ -15,4 +15,7 @@ no return value, PEA result is plotted
 \description{
 This function carries out the pathway enrichment analysis (FEA)
 }
+\examples{
+data(listMoonlight)
+}
 

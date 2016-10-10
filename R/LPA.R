@@ -10,14 +10,12 @@
 #' @export
 #' @return table with number of pubmed that affects, increase or decrase genes annotated in BP
 #' @examples
-#' \dontrun{
 #' data(DEGsmatrix)
 #' BPselected <- c("apoptosis")
 #' BPannotations <- DiseaseList[[match(BPselected, names(DiseaseList))]]$ID
-#' dataLPA <- LPA(dataDEGs = DEGsmatrix[1:50,],
+#' dataLPA <- LPA(dataDEGs = DEGsmatrix[1:5,],
 #'                  BP =  BPselected,
 #'                  BPlist = BPannotations)
-#'}
 
 LPA <- function (dataDEGs, BP, BPlist) {
     

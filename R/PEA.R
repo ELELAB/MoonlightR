@@ -8,17 +8,15 @@
 #' @importFrom grDevices graphics.off
 #' @export
 #' @return no return value, PEA result is plotted
+#' @examples 
+#' data(listMoonlight)
 PEA <- function(listMoonlight){
 
-    list.ocg.id <- listMoonlight
     list.genes <- list()
 
-    for ( i in 1:length(names(list.ocg.id))){
-
-        listCur <- list.ocg.id[[i]]
+    for ( i in 1:length(listMoonlight)){
         
-        listCur<- listCur$dataDEGs
-        DEGsmatrix<- listCur
+        DEGsmatrix<- listMoonlight[[i]]$dataDEGs
         dataDEGsnew <- cbind(mRNA = rownames(DEGsmatrix), DEGsmatrix)
         eg = as.data.frame(bitr(dataDEGsnew$mRNA,
                                 fromType="SYMBOL",
