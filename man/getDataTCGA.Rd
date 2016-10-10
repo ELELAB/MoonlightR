@@ -36,7 +36,9 @@ returns filtered TCGA data
 This function retrieves and prepares TCGA data
 }
 \examples{
+\dontrun{
 dataFilt <- getDataTCGA(cancerType = "LUAD", 
 dataType = "Gene expression", directory = "data", nSample = 4)
+}
 }
 

@@ -16,7 +16,8 @@
 #' @importFrom graphics legend
 #' @importFrom graphics par
 #' @importFrom graphics text
-#' @importFrom grDevices dev.cur
+#' @importFrom grDevices pdf
+#' @importFrom grDevices dev.off
 #' @export
 #' @return no return value, FEA result is plotted
 #' @examples
@@ -66,5 +67,6 @@ plotFEA <- function(dataFEA, topBP = 10,plotNAME = "test",height,width,
        labels = paste(tmp$Diseases.or.Functions.Annotation, " (n=", tmp$commonNg, ")", sep = ""), cex = 1)
 
 
-    if( (which = dev.cur()) != 1){graphics.off() }
+    # if( (which = dev.cur()) != 1){graphics.off() }
+    dev.off()
 }

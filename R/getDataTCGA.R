@@ -25,8 +25,10 @@
 #' @export
 #' @return returns filtered TCGA data
 #' @examples
+#' \dontrun{
 #' dataFilt <- getDataTCGA(cancerType = "LUAD", 
 #' dataType = "Gene expression", directory = "data", nSample = 4)
+#' }
 
 getDataTCGA <- function(cancerType, dataType, directory, 
                           cor.cut = 0.6, qnt.cut = 0.25, 

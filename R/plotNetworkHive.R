@@ -7,7 +7,8 @@
 #' @import HiveR
 #' @importFrom graphics plot.new
 #' @importFrom grid gpar
-#' @importFrom grDevices dev.cur
+#' @importFrom grDevices pdf
+#' @importFrom grDevices dev.off
 #' @export
 #' @return no results Hive plot is executed
 #' @examples
@@ -51,5 +52,6 @@ plotNetworkHive <- function(dataGRN, namesGenes, thres){
 
     pdf("networkHive.pdf")
     HiveR::plotHive(myadj, axLabs = c("remaining TFs", "OCG", "TSG"), bkgnd="white", anNode.gpar=gpar(fontsize = 10, col = "black", lwd = 0.5))
-    if( (which = dev.cur()) != 1){graphics.off() }
+    # if( (which = dev.cur()) != 1){graphics.off() }
+    dev.off()
 }

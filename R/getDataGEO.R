@@ -8,7 +8,9 @@
 #' @export
 #' @return return GEO gset
 #' @examples
+#' \dontrun{
 #' dataGEO <-  getDataGEO(GEOobject = "GSE20347",platform = "GPL571")
+#' }
 
 getDataGEO <- function(GEOobject = "GSE39004", platform = "GPL6244", TCGAtumor=NULL){
     

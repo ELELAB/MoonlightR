@@ -617,6 +617,7 @@ dataURA <- URA(dataGRN = dataGRN,
 The user can retrieve TSG/OCG candidates using either selected biological processes or a random forest classifier trained on known COSMIC OCGs/TSGs.  
 
 ```{r, eval = TRUE}
+data(dataURA)
 dataDual <- PRA(dataURA = dataURA,
                           BPname = c("apoptosis","proliferation of cells"),
                           thres.role = 0)

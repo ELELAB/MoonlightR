@@ -4,6 +4,8 @@
 #' @param listMoonlight output Moonlight function
 #' @importFrom clusterProfiler compareCluster
 #' @importFrom clusterProfiler bitr 
+#' @importFrom grDevices dev.cur
+#' @importFrom grDevices graphics.off
 #' @export
 #' @return no return value, PEA result is plotted
 PEA <- function(listMoonlight){

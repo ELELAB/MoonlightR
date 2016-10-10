@@ -6,8 +6,8 @@
 #' @param thres.role thres.role
 #' @param seed seed value
 #' @importFrom randomForest randomForest
-#' @export
 #' @return returns list of TSGs and OCGs when biological processes are provided, otherwise a randomForest based classifier that can be used on new data
+#' @export
 #' @examples
 #' data(dataURA)
 #' dataDual <- PRA(dataURA = dataURA,

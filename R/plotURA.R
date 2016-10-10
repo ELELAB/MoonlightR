@@ -5,9 +5,8 @@
 #' @param plotNAME figure name
 #' @importFrom gplots heatmap.2
 #' @importFrom gplots redblue
-#' @importFrom grDevices dev.list
-#' @importFrom grDevices graphics.off
-#' @importFrom grDevices dev.cur
+#' @importFrom grDevices pdf
+#' @importFrom grDevices dev.off
 #' @return heatmap
 #' @export
 #' @examples 
@@ -30,6 +29,9 @@ plotURA<- function(dataURA, plotNAME = "URAplot"){
     	 notecex=10/nrow(dataURA), cexCol =0.2 + 1/(3*log10(ncol(dataURA))), cexRow=cexRow,
     	 cellnote= signif(dataURA,4), notecol = "black",key=TRUE, keysize=2)   
 
-    if( (which = dev.cur()) != 1){ graphics.off() }
+    # if( (which = dev.cur()) != 1){ graphics.off() }
+    # dev.off(which = dev.cur())
+    dev.off()
+    # dev.off()
 
 }
