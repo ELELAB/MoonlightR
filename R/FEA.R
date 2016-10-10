@@ -23,7 +23,6 @@ FEA <- function (BPname = NULL, DEGsmatrix){
     pb <- txtProgressBar(min = 0, max = length(DiseaseList), style = 3)
     
     for (k in 1:length(lf2)){
-
         setTxtProgressBar(pb, k)
         res <- as.data.frame(matrix(0,nrow = 1, ncol = 7, dimnames = list(1,c("Diseases.or.Functions.Annotation","p.Value",
                            "Activation.z.score","commonNg","FunctionNg","Delta","Molecules") )))
