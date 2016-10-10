@@ -11,8 +11,9 @@
 #' dataFEA <- FEA(DEGsmatrix = dataDEGs)
 FEA <- function (BPname = NULL, DEGsmatrix){
   
-    EAGenes <- TCGAbiolinks:::EAGenes
- 
+    DiseaseList <- get("DiseaseList")
+    EAGenes <- get("EAGenes")
+    
     if(is.null(BPname)){
         lf2 <- names(DiseaseList)
     }else{

@@ -8,10 +8,12 @@
 #' @export
 #' @return return GEO gset
 #' @examples
-#' dataDEGs <-  getDataGEO(GEOobject = "GSE20347",platform = "GPL571")
+#' dataGEO <-  getDataGEO(GEOobject = "GSE20347",platform = "GPL571")
 
 getDataGEO <- function(GEOobject = "GSE39004", platform = "GPL6244", TCGAtumor=NULL){
     
+  GEO_TCGAtab <- get("GEO_TCGAtab")
+  
     if (length(TCGAtumor)!=0){
         GEOobject <- GEO_TCGAtab[GEO_TCGAtab$Cancer ==  TCGAtumor,"Dataset"]
         platform <- GEO_TCGAtab[GEO_TCGAtab$Cancer ==  TCGAtumor,"Platform"]

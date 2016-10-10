@@ -5,12 +5,23 @@
 \title{plotCircos}
 \usage{
 plotCircos(listMoonlight, listMutation = NULL, additionalFilename = NULL,
-  intensityColOCG = 0.5, intensityColTSG = 0.5, intensityColDual = 0.5)
+  intensityColOCG = 0.5, intensityColTSG = 0.5, intensityColDual = 0.5,
+  fontSize = 1)
 }
 \arguments{
 \item{listMoonlight}{output Moonlight function}
 
+\item{listMutation}{listMutation}
+
 \item{additionalFilename}{additionalFilename}
+
+\item{intensityColOCG}{intensityColOCG}
+
+\item{intensityColTSG}{intensityColTSG}
+
+\item{intensityColDual}{intensityColDual}
+
+\item{fontSize}{fontSize}
 }
 \value{
 no return value, plot is saved

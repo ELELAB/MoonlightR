@@ -9,18 +9,16 @@
 #' @export
 #' @return returns list of TSGs and OCGs when biological processes are provided, otherwise a randomForest based classifier that can be used on new data
 #' @examples
-#' dataDEGs <- DEGsmatrix
-#' dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
-#' DEGsmatrix = dataDEGs,
-#' DiffGenes = TRUE,
-#' normCounts = dataFilt)
-#' dataURA <-URA(dataGRN = dataGRN,
-#' DEGsmatrix = dataDEGs, 
-#' BPname = c("apoptosis",
-#' "proliferation of cells"))
-PRA <- function(dataURA, BPname, ntree = 1000, thres.role = 0, seed=12345){
+#' data(dataURA)
+#' dataDual <- PRA(dataURA = dataURA,
+#' BPname = c("apoptosis","proliferation of cells"),
+#' thres.role = 0)
+PRA <- function(dataURA, BPname, thres.role = 0, seed=12345){
     set.seed(seed)
 
+  tabGrowBlock <- get("tabGrowBlock")
+  knownDriverGenes <- get("knownDriverGenes") 
+  
     names.blocking <- tabGrowBlock[which(tabGrowBlock$Cancer.blocking == "Increasing"), "Disease"]
     names.growing <- tabGrowBlock[which(tabGrowBlock$Cancer.growing == "Increasing"), "Disease"]
 
@@ -33,7 +31,7 @@ PRA <- function(dataURA, BPname, ntree = 1000, thres.role = 0, seed=12345){
         dataTrain <- data.frame(dataURA[c(common.genes.tsg, common.genes.ocg),],
             "labels"=as.factor(c(rep(1,length(common.genes.tsg)),rep(0,length(common.genes.ocg)))))
 
-        fit.rf <- randomForest((labels)~.,data=dataTrain, importance=TRUE, ntree = ntree)
+        fit.rf <- randomForest((labels)~.,data=dataTrain, importance=TRUE)
         return(fit.rf)
 
     }else{

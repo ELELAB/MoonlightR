@@ -21,16 +21,22 @@
 #' @importFrom TCGAbiolinks TCGAanalyze_Preprocessing
 #' @importFrom TCGAbiolinks TCGAanalyze_Normalization
 #' @importFrom TCGAbiolinks TCGAanalyze_Filtering
+#' @importFrom utils as.roman
 #' @export
 #' @return returns filtered TCGA data
 #' @examples
-#' dataDEGs <- getDataTCGA(cancerType = "LUAD", dataType = "Gene expression", directory = "data", nSample = 10)
+#' dataFilt <- getDataTCGA(cancerType = "LUAD", 
+#' dataType = "Gene expression", directory = "data", nSample = 4)
 
 getDataTCGA <- function(cancerType, dataType, directory, 
                           cor.cut = 0.6, qnt.cut = 0.25, 
                           nSample, stage = "ALL", subtype = 0, 
                           samples = NULL, seed = 12345){
 
+  DiseaseList <- get("DiseaseList")
+  GDCprojects <- get("GDCprojects")
+  geneInfo <- get("geneInfo")
+  
     set.seed(seed)
     CancerProject <- paste0("TCGA-",cancerType)
     DataDirectory <- paste0(directory,"GDC_",gsub("-","_",CancerProject))
@@ -106,6 +112,7 @@ getDataTCGA <- function(cancerType, dataType, directory,
                                    save.filename = FileNameData)
         }else{
             load(FileNameData)
+            data <- get("data")
             RSEobject <- data
         }
 

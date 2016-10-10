@@ -19,4 +19,10 @@ table with number of pubmed that affects, increase or decrase genes annotated in
 \description{
 This function carries out the literature phenotype analysis (LPA)
 }
+\examples{
+data(DEGsmatrix)
+dataLPA <- LPA(dataDEGs = DEGsmatrix[1:50,],
+                 BP =  "apoptosis",
+                 BPlist = BPannotations)
+}
 

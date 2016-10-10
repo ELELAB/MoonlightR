@@ -6,11 +6,14 @@
 #' @param thres threshold of edges to be included
 #' @import HiveR
 #' @importFrom graphics plot.new
+#' @importFrom grid gpar
+#' @importFrom grDevices dev.cur
 #' @export
 #' @return no results Hive plot is executed
 #' @examples
-#' dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
-#' # to change with moonlight
+#' data(knownDriverGenes)
+#' data(dataGRN)
+#' plotNetworkHive(dataGRN = dataGRN, namesGenes = knownDriverGenes, thres = 0.55)
 plotNetworkHive <- function(dataGRN, namesGenes, thres){
 
     names.genes.all <- intersect(as.character(unique(c(unlist(namesGenes), rownames(dataGRN[[1]])))),colnames(dataGRN[[1]]))
@@ -48,5 +51,5 @@ plotNetworkHive <- function(dataGRN, namesGenes, thres){
 
     pdf("networkHive.pdf")
     HiveR::plotHive(myadj, axLabs = c("remaining TFs", "OCG", "TSG"), bkgnd="white", anNode.gpar=gpar(fontsize = 10, col = "black", lwd = 0.5))
-    dev.off()
+    if( (which = dev.cur()) != 1){graphics.off() }
 }

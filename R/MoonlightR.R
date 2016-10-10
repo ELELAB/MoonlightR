@@ -126,3 +126,67 @@ NULL
 #' @format A 101x3 matrix
 #' @return a 101x3 matrix
 NULL
+
+
+#' Information about genes
+#'
+#' A data set containing the following data: 
+#'
+#' \itemize{
+#'		\item EAGenes matrix with 20038 rows (genes) and five columns   
+#'		"ID"          "Gene"        "Description" "Location"    "Family"     
+#' }
+#' @docType data
+#' @keywords datasets
+#' @name EAGenes
+#' @usage data(EAGenes)
+#' @format A 20038x5 matrix
+#' @return a 20038x5 matrix
+NULL
+
+#' Information about genes for normalization
+#'
+#' A data set containing the following data: 
+#'
+#' \itemize{
+#'		\item geneInfo matrix with 20531 rows (genes) and 3 columns   
+#'		"geneLength" "gcContent"  "chr"         
+#' }
+#' @docType data
+#' @keywords datasets
+#' @name geneInfo
+#' @usage data(geneInfo)
+#' @format A data frame with 20531 rows and 3 variables
+#' @return a 20531x3 matrix
+NULL
+
+#' Information on GDC projects
+#'
+#' A character vector of GDC projects: 
+#'
+#' \itemize{
+#'		\item character vector for GDC projects.
+#' }
+#' @docType data
+#' @keywords datasets
+#' @name GDCprojects
+#' @usage data(GDCprojects)
+#' @format A character vector of 39 elements
+#' @return character vector of 39 elements
+NULL
+
+#' Output example from function Upstram Regulator Analysis
+#'
+#' A data set containing the following data: 
+#'
+#' \itemize{
+#'		\item dataURA matrix with 100 rows (genes) and 2 columns   
+#'		 "apoptosis"              "proliferation of cells"
+#' }
+#' @docType data
+#' @keywords datasets
+#' @name dataURA
+#' @usage data(dataURA)
+#' @format A data frame with 100 rows and 2 variables
+#' @return a 100x2 matrix
+NULL

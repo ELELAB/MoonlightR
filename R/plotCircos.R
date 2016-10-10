@@ -3,19 +3,26 @@
 #' This function visualize the plotCircos
 #' @param listMoonlight output Moonlight function 
 #' @param additionalFilename additionalFilename 
+#' @param intensityColOCG intensityColOCG
+#' @param intensityColTSG intensityColTSG
+#' @param intensityColDual intensityColDual
+#' @param fontSize fontSize
+#' @param listMutation listMutation    
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom circlize circos.par
 #' @importFrom circlize circlize
 #' @importFrom circlize circos.clear
 #' @importFrom circlize circos.initialize
 #' @importFrom circlize circos.trackPlotRegion get.cell.meta.data circos.text circos.rect
-#' @importFrom grDevices dev.off pdf rainbow rgb
+#' @importFrom grDevices dev.cur dev.off pdf rainbow rgb
 #' @export
 #' @return no return value, plot is saved
 #' @examples 
 #' plotCircos(listMoonlight = listMoonlight, additionalFilename = "_ncancer5")
 
-plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = NULL, intensityColOCG = 0.5, intensityColTSG = 0.5, intensityColDual = 0.5, fontSize=1){
+plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = NULL, 
+                       intensityColOCG = 0.5, intensityColTSG = 0.5, intensityColDual = 0.5, 
+                       fontSize=1){
 
     ### prepare data
     n <- length(listMoonlight)
@@ -222,5 +229,6 @@ plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = 
         }
     }
 
-    dev.off()
-}
+    if( (which = dev.cur()) != 1){graphics.off() }
+
+    }

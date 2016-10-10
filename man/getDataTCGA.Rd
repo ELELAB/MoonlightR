@@ -36,6 +36,7 @@ returns filtered TCGA data
 This function retrieves and prepares TCGA data
 }
 \examples{
-dataDEGs <- getDataTCGA(cancerType = "LUAD", dataType = "Gene expression", directory = "data", nSample = 10)
+dataFilt <- getDataTCGA(cancerType = "LUAD", 
+dataType = "Gene expression", directory = "data", nSample = 4)
 }
 
