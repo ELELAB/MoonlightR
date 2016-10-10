@@ -18,7 +18,7 @@
 #' DEGsmatrix = dataDEGs, 
 #' BPname = c("apoptosis",
 #' "proliferation of cells"))
-PRA <- function(dataURA, BPname, thres.role = 0, seed=12345){
+PRA <- function(dataURA, BPname, ntree = 1000, thres.role = 0, seed=12345){
     set.seed(seed)
 
     names.blocking <- tabGrowBlock[which(tabGrowBlock$Cancer.blocking == "Increasing"), "Disease"]
@@ -33,7 +33,7 @@ PRA <- function(dataURA, BPname, thres.role = 0, seed=12345){
         dataTrain <- data.frame(dataURA[c(common.genes.tsg, common.genes.ocg),],
             "labels"=as.factor(c(rep(1,length(common.genes.tsg)),rep(0,length(common.genes.ocg)))))
 
-        fit.rf <- randomForest((labels)~.,data=dataTrain, importance=TRUE)
+        fit.rf <- randomForest((labels)~.,data=dataTrain, importance=TRUE, ntree = ntree)
         return(fit.rf)
 
     }else{
