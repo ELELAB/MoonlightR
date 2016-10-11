@@ -69,5 +69,10 @@ importFrom(stats,fisher.test)
 importFrom(stats,model.matrix)
 importFrom(stats,quantile)
 importFrom(utils,as.roman)
+<<<<<<< HEAD
+=======
+importFrom(utils,data)
+importFrom(utils,read.table)
+>>>>>>> origin/devel
 importFrom(utils,setTxtProgressBar)
 importFrom(utils,txtProgressBar)
