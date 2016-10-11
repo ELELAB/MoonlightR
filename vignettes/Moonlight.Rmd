@@ -574,6 +574,7 @@ for (i in 1:length(BPselected)){
 The user can perform a functional enrichment analysis using the function `FEAcomplete`. For each DEG in the gene set a z-score is calculated. This score indicates how the genes act in the gene set.
 
 ```{r, eval = TRUE, echo = TRUE, results='hide'}
+data(DEGsmatrix)
 dataFEA <- FEA(DEGsmatrix = DEGsmatrix)
 ```
 
