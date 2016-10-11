@@ -43,7 +43,7 @@ FEA <- function (BPname = NULL, DEGsmatrix){
         seta <- allgene %in% GeneList$PROBE_ID
         setb <- allgene %in% selected_diseases$ID
     
-        if( length(res$commonNg) > 1){
+        if( res$commonNg > 1){
         ft <- fisher.test(seta, setb)
         FisherpvalueTF <- ft$p.value
         res$p.Value <- FisherpvalueTF
