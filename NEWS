@@ -2,5 +2,31 @@
 ----------------------------------------------------------------
   FIRST VERSION - FEATURES
 
-Package MoonlightR version 0.99.1 
-* SpidermiRquery_species	Searching by species.
+* dataFilt	Gene Expression (Rnaseqv2) data from TCGA LUAD
+* dataGRN	GRN gene regulatory network output
+* dataURA	Output example from function Upstram Regulator Analysis
+* DEGsmatrix	DEG Differentially expressed genes
+* DiseaseList	Information on 101 biological processes
+* DPA	DPA
+* EAGenes	Information about genes
+* FEA	FEA
+* GDCprojects	Information on GDC projects
+* geneInfo	Information about genes for normalization
+* GEO_TCGAtab	Information on GEO data (and overlap with TCGA)
+* getDataGEO	getDataGEO
+* getDataTCGA	getDataTCGA
+* GRN	Generate network
+* GSEA	GSEA
+* knownDriverGenes	Information on known cancer driver gene from COSMIC
+* listMoonlight	Output list from Moonlight
+* LPA	LPA
+* moonlight	moonlight pipeline
+* MoonlightR	MoonlightR
+* PEA	PEA
+* plotCircos	plotCircos
+* plotFEA	plotFEA
+* plotNetworkHive	plotNetworkHive: Hive network plot
+* plotURA	plotURA: Upstream regulatory analysis heatmap plot
+* PRA	Pattern Recognition Analysis (PRA)
+* tabGrowBlock	Information growing/blocking characteristics for 101 selected biological processes
+* URA	URA Upstream Regulator Analysis
