@@ -655,7 +655,7 @@ dataDEGs <- DPA(dataFilt = dataFilt,
 
 dataFEA <- FEA(DEGsmatrix = dataDEGs)
 
-dataGRN <- GRN(TFs = rownames(dataDEGs)[1:10], 
+dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
                DEGsmatrix = dataDEGs,
                DiffGenes = TRUE,
                normCounts = dataFilt)
