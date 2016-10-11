@@ -4,7 +4,7 @@
 \alias{plotFEA}
 \title{plotFEA}
 \usage{
-plotFEA(dataFEA, topBP = 10, plotNAME = "test", height, width,
+plotFEA(dataFEA, topBP = 10, additionalFilename = NULL, height, width,
   offsetValue = 5, angle = 90, xleg = 35, yleg = 5, minY = -5,
   maxY = 10)
 }
@@ -13,7 +13,7 @@ plotFEA(dataFEA, topBP = 10, plotNAME = "test", height, width,
 
 \item{topBP}{topBP}
 
-\item{plotNAME}{plotNAME}
+\item{additionalFilename}{additionalFilename}
 
 \item{height}{Figure height}
 
@@ -39,6 +39,6 @@ This function visualize the functional enrichment analysis (FEA)'s barplot
 }
 \examples{
 dataFEA <- FEA(DEGsmatrix = DEGsmatrix)
-plotFEA(dataFEA = dataFEA,plotNAME = "FEAplot",height = 20,width = 10)
+plotFEA(dataFEA = dataFEA, additionalFilename = "_example",height = 20,width = 10)
 }
 

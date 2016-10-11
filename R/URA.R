@@ -52,7 +52,7 @@ doParallel::registerDoParallel(cores = nCores)
         }
     }
     dimnames(TableDiseases) <- list(tRlist, BPname)
- 
+    stopImplicitCluster()
     close(pb)
     return(TableDiseases)
 }

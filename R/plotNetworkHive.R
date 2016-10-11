@@ -4,6 +4,7 @@
 #' @param dataGRN output GRN function
 #' @param namesGenes list TSG and OCG to define axes
 #' @param thres threshold of edges to be included
+#' @param additionalFilename additionalFilename 
 #' @import HiveR
 #' @importFrom graphics plot.new
 #' @importFrom grid gpar
@@ -15,7 +16,7 @@
 #' data(knownDriverGenes)
 #' data(dataGRN)
 #' plotNetworkHive(dataGRN = dataGRN, namesGenes = knownDriverGenes, thres = 0.55)
-plotNetworkHive <- function(dataGRN, namesGenes, thres){
+plotNetworkHive <- function(dataGRN, namesGenes, thres, additionalFilename = NULL){
 
     names.genes.all <- intersect(as.character(unique(c(unlist(namesGenes), rownames(dataGRN[[1]])))),colnames(dataGRN[[1]]))
     tmp <- dataGRN[[1]][,(names.genes.all)]
@@ -50,8 +51,11 @@ plotNetworkHive <- function(dataGRN, namesGenes, thres){
     ind.tsg <- which(rownames(tmp)[myadj$edges$id2] %in% namesGenes$TSG)
     myadj$edges$color[ind.tsg] <- "goldenrod"
 
-    pdf("networkHive.pdf")
+    if(!is.null(additionalFilename)){
+        pdf(paste0("networkHive", additionalFilename, ".pdf"))
+    }
     HiveR::plotHive(myadj, axLabs = c("remaining TFs", "OCG", "TSG"), bkgnd="white", anNode.gpar=gpar(fontsize = 10, col = "black", lwd = 0.5))
-    # if( (which = dev.cur()) != 1){graphics.off() }
-    dev.off()
+    if(!is.null(additionalFilename)){
+        dev.off()
+    }
 }

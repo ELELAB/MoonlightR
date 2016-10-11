@@ -4,12 +4,12 @@
 \alias{plotURA}
 \title{plotURA: Upstream regulatory analysis heatmap plot}
 \usage{
-plotURA(dataURA, plotNAME = "URAplot")
+plotURA(dataURA, additionalFilename = "URAplot")
 }
 \arguments{
 \item{dataURA}{output URA function}
 
-\item{plotNAME}{figure name}
+\item{additionalFilename}{figure name}
 }
 \value{
 heatmap
@@ -22,6 +22,6 @@ data(dataURA)
 dataDual <- PRA(dataURA = dataURA,
 BPname = c("apoptosis","proliferation of cells"),
 thres.role = 0)
-plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],plotNAME = "URAplot")
+plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],additionalFilename = "_example")
 }
 

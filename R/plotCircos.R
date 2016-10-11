@@ -60,8 +60,9 @@ plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = 
     ntsg <- sapply(mytsg,length)
     nocg <- sapply(myocg, length)
 
-
-    pdf(paste0("circos_ocg_tsg",additionalFilename,".pdf"), width=16, height=16)
+    if(!is.null(additionalFilename)){
+        pdf(paste0("circos_ocg_tsg",additionalFilename,".pdf"), width=16, height=16)
+    }
     df1 <- data.frame("order" =c(1:n), "cancertype"=mynames, "xmin"=rep(0,n), "xmax"=n.mygenes)
 
     ### Plot sectors (outer part)
@@ -231,7 +232,8 @@ plotCircos <- function(listMoonlight, listMutation = NULL, additionalFilename = 
         }
     }
 
-    # if( (which = dev.cur()) != 1){graphics.off() }
-    dev.off()
+    if(!is.null(additionalFilename)){
+        dev.off()
+    }
 
     }

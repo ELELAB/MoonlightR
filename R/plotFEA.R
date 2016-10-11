@@ -3,7 +3,7 @@
 #' This function visualize the functional enrichment analysis (FEA)'s barplot
 #' @param dataFEA dataFEA 
 #' @param topBP topBP 
-#' @param plotNAME plotNAME 
+#' @param additionalFilename additionalFilename 
 #' @param height Figure height
 #' @param width Figure width
 #' @param offsetValue offsetValue 
@@ -22,14 +22,17 @@
 #' @return no return value, FEA result is plotted
 #' @examples
 #' dataFEA <- FEA(DEGsmatrix = DEGsmatrix)
-#' plotFEA(dataFEA = dataFEA,plotNAME = "FEAplot",height = 20,width = 10)
-plotFEA <- function(dataFEA, topBP = 10,plotNAME = "test",height,width,
-                               offsetValue=5,angle=90,xleg=35,yleg=5,minY=-5,maxY =10){
+#' plotFEA(dataFEA = dataFEA, additionalFilename = "_example",height = 20,width = 10)
+plotFEA <- function(dataFEA, topBP = 10, additionalFilename = NULL, height, width,
+                               offsetValue = 5, angle = 90, xleg = 35, yleg =5 , minY = -5, maxY =10){
                                #offsetValue,angle,xleg=22,yleg=10,minY=-3,maxY=10){
   
  # mycols <- c("#66C2A5", "#FC8D62", "#8DA0CB")
     mycols <- c("#8DD3C7", "#FFFFB3", "#BEBADA")
-    pdf(file = paste0(plotNAME,".pdf"))
+
+    if(!is.null(additionalFilename)){
+        pdf(file = paste0("plotFEA",additionalFilename,".pdf"))
+    }
     par(mar = c(12,5,5,1))
     dataFEA <- dataFEA[order(abs(dataFEA$Activation.z.score),decreasing =TRUE),]
 
@@ -59,14 +62,14 @@ plotFEA <- function(dataFEA, topBP = 10,plotNAME = "test",height,width,
     #toPlot <-as.numeric(toPlot)
     toPlot <- as.matrix(toPlot)
     xAxis <- barplot(toPlot, beside = TRUE, col = mycols, ylab = "-logFDR/10 and Activation z-score",
-                   names = NULL, main = paste(plotNAME, " - Enriched BioFunctions",sep=" "), ylim = c(minY, maxY))
+                   names = NULL, main = paste("FEA - Enriched BioFunctions",sep=" "), ylim = c(minY, maxY))
     legend("topright", bty = "n", xleg, yleg, legend = c("-logFDR/10","Activation Z-score Increased","Activation Z-score Decreased"), 
          fill = mycols, cex=0.5)#, text.col = c("blue","red", "green"), pch = 15)
 
     text(xAxis[2, ], par("usr")[3]+offsetValue,  srt = angle, adj = 1, xpd = TRUE,
        labels = paste(tmp$Diseases.or.Functions.Annotation, " (n=", tmp$commonNg, ")", sep = ""), cex = 1)
 
-
-    # if( (which = dev.cur()) != 1){graphics.off() }
-    dev.off()
+    if(!is.null(additionalFilename)){
+        dev.off()
+    }
 }
