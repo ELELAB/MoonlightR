@@ -11,8 +11,9 @@
 #' dataFEA <- FEA(DEGsmatrix = dataDEGs)
 FEA <- function (BPname = NULL, DEGsmatrix){
   
-    EAGenes <- TCGAbiolinks:::EAGenes
- 
+    DiseaseList <- get("DiseaseList")
+    EAGenes <- get("EAGenes")
+    
     if(is.null(BPname)){
         lf2 <- names(DiseaseList)
     }else{
@@ -23,7 +24,6 @@ FEA <- function (BPname = NULL, DEGsmatrix){
     pb <- txtProgressBar(min = 0, max = length(DiseaseList), style = 3)
     
     for (k in 1:length(lf2)){
-
         setTxtProgressBar(pb, k)
         res <- as.data.frame(matrix(0,nrow = 1, ncol = 7, dimnames = list(1,c("Diseases.or.Functions.Annotation","p.Value",
                            "Activation.z.score","commonNg","FunctionNg","Delta","Molecules") )))
@@ -43,7 +43,7 @@ FEA <- function (BPname = NULL, DEGsmatrix){
         seta <- allgene %in% GeneList$PROBE_ID
         setb <- allgene %in% selected_diseases$ID
     
-        if( length(res$commonNg) > 1){
+        if( res$commonNg > 1){
         ft <- fisher.test(seta, setb)
         FisherpvalueTF <- ft$p.value
         res$p.Value <- FisherpvalueTF

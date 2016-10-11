@@ -24,7 +24,8 @@ GRN <- function(TFs, DEGsmatrix, DiffGenes = FALSE, normCounts, kNearest = 3, nG
     normCountsB <- normCounts
 
     if(DiffGenes==TRUE){
-        normCountsB <- normCountsB[rownames(DEGsmatrix),]
+      commonGenes <- intersect(rownames(DEGsmatrix), rownames(normCountsB) )
+      normCountsB <- normCountsB[commonGenes,]
     }else{
         normCountsB <- normCountsA
     }

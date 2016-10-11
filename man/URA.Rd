@@ -4,7 +4,7 @@
 \alias{URA}
 \title{URA Upstream Regulator Analysis}
 \usage{
-URA(dataGRN, DEGsmatrix, BPname)
+URA(dataGRN, DEGsmatrix, BPname, nCores = 1)
 }
 \arguments{
 \item{dataGRN}{output GNR function}
@@ -12,6 +12,8 @@ URA(dataGRN, DEGsmatrix, BPname)
 \item{DEGsmatrix}{output DPA function}
 
 \item{BPname}{biological processes}
+
+\item{nCores}{number of cores to use}
 }
 \value{
 an adjacent matrix

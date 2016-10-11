@@ -11,7 +11,7 @@ DPA(dataType, dataFilt, dataConsortium = "TCGA", fdr.cut = 0.01,
 \arguments{
 \item{dataType}{selected}
 
-\item{dataFilt}{obtained from get.data.TCGA}
+\item{dataFilt}{obtained from getDataTCGA}
 
 \item{dataConsortium}{is TCGA or GEO, default TCGA}
 

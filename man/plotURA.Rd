@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotURA.R
 \name{plotURA}
 \alias{plotURA}
-\title{plotURA: Upstream regulatory analysis plot}
+\title{plotURA: Upstream regulatory analysis heatmap plot}
 \usage{
 plotURA(dataURA, plotNAME = "URAplot")
 }
@@ -18,19 +18,10 @@ heatmap
 This function visualizes the URA in a heatmap
 }
 \examples{
-dataDEGs <- DEGsmatrix
-dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
-DEGsmatrix = dataDEGs,
-DiffGenes = TRUE,
-normCounts = dataFilt)
-dataURA <-URA(dataGRN = dataGRN,
-DEGsmatrix = dataDEGs, 
-BPname = c("apoptosis",
-"proliferation of cells"))
-dataDual <-PRA(dataURA = dataURA, 
-BPname = c("apoptosis",
-"proliferation of cells"),
-thres.role = 1)
+data(dataURA)
+dataDual <- PRA(dataURA = dataURA,
+BPname = c("apoptosis","proliferation of cells"),
+thres.role = 0)
 plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],plotNAME = "URAplot")
 }
 

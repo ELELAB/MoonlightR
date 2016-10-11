@@ -6,26 +6,25 @@
 #' @param thres.role thres.role
 #' @param seed seed value
 #' @importFrom randomForest randomForest
-#' @export
+#' @importFrom utils data
 #' @return returns list of TSGs and OCGs when biological processes are provided, otherwise a randomForest based classifier that can be used on new data
+#' @export
 #' @examples
-#' dataDEGs <- DEGsmatrix
-#' dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
-#' DEGsmatrix = dataDEGs,
-#' DiffGenes = TRUE,
-#' normCounts = dataFilt)
-#' dataURA <-URA(dataGRN = dataGRN,
-#' DEGsmatrix = dataDEGs, 
-#' BPname = c("apoptosis",
-#' "proliferation of cells"))
+#' data(dataURA)
+#' dataDual <- PRA(dataURA = dataURA,
+#' BPname = c("apoptosis","proliferation of cells"),
+#' thres.role = 0)
 PRA <- function(dataURA, BPname, thres.role = 0, seed=12345){
     set.seed(seed)
+
+    tabGrowBlock <- get("tabGrowBlock")
+    knownDriverGenes <- get("knownDriverGenes")
 
     names.blocking <- tabGrowBlock[which(tabGrowBlock$Cancer.blocking == "Increasing"), "Disease"]
     names.growing <- tabGrowBlock[which(tabGrowBlock$Cancer.growing == "Increasing"), "Disease"]
 
     if(is.null(BPname)){
-
+        
       	# print("random forest")
         common.genes.tsg <- intersect(knownDriverGenes$TSG, rownames(dataURA))
         common.genes.ocg <- intersect(knownDriverGenes$OCG, rownames(dataURA))
@@ -45,13 +44,13 @@ PRA <- function(dataURA, BPname, thres.role = 0, seed=12345){
         names.genes.ocg <- names(which(dataURA[,BPname[ind.proc.growing]] > thres.role & dataURA[,BPname[ind.proc.blocking]] < -thres.role))
 
         if(length(names.genes.tsg)>0){
-            scores.tsg <- apply(abs(dataURA[names.genes.tsg,]), 1, mean)
+            scores.tsg <- apply(abs(dataURA[names.genes.tsg,,drop=FALSE]), 1, mean)
         }else{
             scores.tsg <- NULL
         }
         
         if(length(names.genes.ocg)>0){
-            scores.ocg <- apply(abs(dataURA[names.genes.ocg,]), 1, mean)   
+            scores.ocg <- apply(abs(dataURA[names.genes.ocg,,drop=FALSE]), 1, mean)   
         }else{
             scores.ocg <- 0
         }

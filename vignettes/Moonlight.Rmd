@@ -1,5 +1,5 @@
 ---
-title: "Moonlight: an approach to identify multiple role of biomarkers as oncogene or oncosuppressor in different tumor types and stages."
+title: "Moonlight: an approach to identify multiple role of biomarkers as oncogene or tumorsuppressor in different tumor types and stages."
 author: "Antonio Colaprico^+^ ,
         Catharina Olsen^+^,
         Claudia Cava, 
@@ -387,7 +387,7 @@ We propose `MoonlightR` a new approach to define TSGs and OCGs based on function
 
 # Moonlight's pipeline
 
-The figure from Moonlight's pipeline is shown below:
+Moonlight's pipeline is shown below:
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
 library(png)
 library(grid)
@@ -399,24 +399,22 @@ grid.raster(img)
 
 The proposed pipeline consists of following eight steps:
 
-1. **get.data.TCGA** for Data collection: expression levels of genes in all samples obtained with IlluminaHiSeq RNASeqV2 in 18 normal tissues (NT) and 18 cancer tissues (CT) according to TCGA criteria, and GEO data set matched to one of the 18 given TCGA cancer types as described in following Table TCGA / GEO.
+1. **getDataTCGA** \& **getDataGEO** for Data collection: expression levels of genes in all samples obtained with IlluminaHiSeq RNASeqV2 in 18 normal tissues (NT) and 18 cancer tissues (CT) according to TCGA criteria, and GEO data set matched to one of the 18 given TCGA cancer types as described in following Table TCGA / GEO.
 2. **DPA** Differential Phenotype Analysis (DEA) to identify genes or probes that are different significantly with two phenotypes such as normal and tumor, or normal and stageI, normal and molecular subtype.
 3. **FEA** Functional Enrichment Analysis (EA), using Fisher's test, to identify gene sets (with biological functions linked to cancer<sup>1</sup>) significantly enriched by RG.
-4. **GRN** Gene regulatory network inferred between each single DEG (sDEG) and all genes obtained by means of mutual information, obtaining for each DEG a list of regulated genes (RG).
-5. **URA** Upstream Regulator Analysis For DEGs in each enriched gene set, we applied  Z.Score being the ratio between the sum of all predicted effects for all the gene involved in the specific function and the square-root of the number of all genes.
+4. **GRN** Gene regulatory network inferred between each single DEG (sDEG) and all genes by means of mutual information, obtaining for each DEG a list of regulated genes (RG).
+5. **URA** Upstream Regulator Analysis for DEGs in each enriched gene set, we applied z-score being the ratio between the sum of all predicted effects for all the gene involved in the specific function and the square-root of the number of all genes.
 6. **PRA** Pattern recognition analysis identifies candidate TCGs (down) and OCGs (up). We either use user defined biological processes or random forests.
-7. We applied the above procedure to multiple cancer types to obtain cancer-specific lists of TCGs and OCGs . We compared the lists for each cancer: if a sDEG was TSG in a cancer and OCG in another we defined it as dual-role TSG-OCG. Otherwise if we found a sDEG defined as OCG or TSG only in one tissue we defined it tissue specific biomarker.
+7. We applied the above procedure to multiple cancer types to obtain cancer-specific lists of TCGs and OCGs. We compared the lists for each cancer: if a sDEG was TSG in a cancer and OCG in another we defined it as dual-role TSG-OCG. Otherwise if we found a sDEG defined as OCG or TSG only in one tissue we defined it tissue specific biomarker.
 8. We use the COSMIC database to define a list of gold standard TSG and OCGs to assess the accuracy of the proposed method.
 
-<sup>1</sup> For the devel version of MoonlightR we use a short extract of 100 biological functions from QIAGEN'S Ingenuity Pathway Analysis (IPA). We are still working to integrate the\Biocpkg{ReactomePA} package.
+<sup>1</sup> For the devel version of MoonlightR we use a short extract of ten biological functions from QIAGEN'S Ingenuity Pathway Analysis (IPA). We are still working to integrate the\Biocpkg{ReactomePA} package.
 
 # Installation
 
 To install use the code below.
 
 ```{r, eval = FALSE}
-#library(devtools)
-#install_github("torongs82/Moonlight/tree/master/MoonlightR")
 source("https://bioconductor.org/biocLite.R")
 biocLite("MoonlightR")
 ```
@@ -435,39 +433,36 @@ Related publications to this package:
 # `Download`: Get TCGA data
 
 
-You can search TCGA data using the `get.data.TCGA` function.
+You can search TCGA data using the `getDataTCGA` function.
 
 
-## `get.data.TCGA`: Searching by cancer type and data type [Gene Expression]
-The user can query and download the cancer types supported by TCGA, using the function `get.data.TCGA`:
-In this example we used LUAD gene expression data with only 10 samples to reduce time downloading.
+## `getDataTCGA`: Search by cancer type and data type [Gene Expression]
+The user can query and download the cancer types supported by TCGA, using the function `getDataTCGA`:
+In this example we used LUAD gene expression data with only 4 samples to reduce time downloading.
 
 ```{r, eval = FALSE}
-
-dataFilt <- get.data.TCGA(cancerType = "LUAD", 
+dataFilt <- getDataTCGA(cancerType = "LUAD", 
                           dataType = "Gene expression",
                           directory = "data",
-                          nSample = 10)
+                          nSample = 4)
 ```
 
-## `get.data.TCGA`: Searching by cancer type and data type [Methylation]
-The user can also query and download methylation data using the function `get.data.TCGA`:
+## `getDataTCGA`: Search by cancer type and data type [Methylation]
+The user can also query and download methylation data using the function `getDataTCGA`:
 
 
 ```{r, eval = FALSE}
-
-dataFilt <- get.data.TCGA(cancerType = "LUAD", 
+dataFilt <- getDataTCGA(cancerType = "BRCA", 
                           dataType = "Methylation", 
-                          directory = "test", 
-                          nSample = 10)
+                          directory = "data",nSample = 4)
 ```
 
 
 # `Download`: Get GEO data
 
-You can search GEO data using the `get.data.GEO` function.
+You can search GEO data using the `getDataGEO` function.
 
-GEO_TCGAtab a 18x12 matrix that provides the GEO data set we matched to one of the 18 given TCGA cancer types 
+GEO_TCGAtab: a 18x12 matrix that provides the GEO data set we matched to one of the 18 given TCGA cancer types 
 
 ```{r, eval = TRUE, echo = TRUE}
 knitr::kable(GEO_TCGAtab, digits = 2, 
@@ -478,32 +473,30 @@ knitr::kable(GEO_TCGAtab, digits = 2,
 
 
 
-## `get.data.GEO`: Searching by cancer type and data type [Gene Expression]
-The user can query and download the cancer types supported by GEO, using the function `get.data.GEO`:
+## `getDataGEO`: Search by cancer type and data type [Gene Expression]
+The user can query and download the cancer types supported by GEO, using the function `getDataGEO`:
 
-```{r, eval = TRUE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
-library(MoonlightR)
-dataFilt <- get.data.GEO(GEOobject = "GSE20347",platform = "GPL571")
+```{r, eval = FALSE , echo = TRUE, results='hide', warning = FALSE, message = FALSE}
+dataFilt <- getDataGEO(GEOobject = "GSE20347",platform = "GPL571")
 ```
 
-```{r, eval = TRUE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
-library(MoonlightR)
-dataFilt <- get.data.GEO(TCGAtumor = "ESCA")
+```{r, eval = FALSE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
+dataFilt <- getDataGEO(TCGAtumor = "ESCA")
 ```
 
 # `Analysis`: To analyze TCGA data
 
 ## `DPA`: Differential Phenotype Analysis
 
-Differential Phenotype analysis is able to identify genes or probes that are significantly different between two phenotypes such as normal vs. tumor, or normal vs. stageI, normal vs. molecular subtype.
+Differential phenotype analysis is able to identify genes or probes that are significantly different between two phenotypes such as normal vs. tumor, or normal vs. stageI, normal vs. molecular subtype.
 
 For gene expression data, DPA is running a differential expression analysis (DEA) to identify differentially expressed genes (DEGs) using the `TCGAanalyze_DEA` function from \Biocpkg{TCGAbiolinks}.
 
-For methylation data DPA is running a differentially methylated regions analysis (DMR) to identify 
+For methylation data, DPA is running a differentially methylated regions analysis (DMR) to identify 
 differentially methylated CpG sites using the `TCGAanalyze_DMR` the `TCGAanalyze_DMR` function from \Biocpkg{TCGAbiolinks}.
 
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, message=FALSE, results='hide', warning=FALSE}
 dataDEGs <- DPA(dataFilt = dataFilt,
                 dataType = "Gene expression")
 ```
@@ -511,7 +504,7 @@ dataDEGs <- DPA(dataFilt = dataFilt,
 For gene expression data, DPA dealing with GEO data is running a differential expression analysis (DEA) to identify differentially expressed genes (DEGs) using  to the `eBayes` and `topTable` functions from \Biocpkg{limma}.
 
 ```{r, eval = FALSE, echo = TRUE, hide=TRUE, results='hide', warning = FALSE, message = FALSE}
-
+data(GEO_TCGAtab)
 DataAnalysisGEO<- "../GEO_dataset/"
 i<-5
 
@@ -520,7 +513,7 @@ cancerGEO <- GEO_TCGAtab$Dataset[i]
 cancerPLT <-GEO_TCGAtab$Platform[i]
 fileCancerGEO <- paste0(cancer,"_GEO_",cancerGEO,"_",cancerPLT, ".RData")
 
-dataFilt <- get.data.GEO(TCGAtumor = cancer)
+dataFilt <- getDataGEO(TCGAtumor = cancer)
 
 GEOdegs <- DPA(dataConsortium = "GEO",
                gset = dataFilt ,
@@ -535,15 +528,12 @@ GEOdegs <- DPA(dataConsortium = "GEO",
 We can visualize those differentially expressed genes (DEGs) with a volcano plot using the `TCGAVisualize_volcano` function from \Biocpkg{TCGAbiolinks.}.
 
 ```{r, eval = TRUE, echo = TRUE}
-library(MoonlightR)
-require(TCGAbiolinks)
-data(DEGsmatrix)
-dataDEGs <- DEGsmatrix
-TCGAVisualize_volcano(dataDEGs$logFC,dataDEGs$FDR,
+library(TCGAbiolinks)
+TCGAVisualize_volcano(DEGsmatrix$logFC, DEGsmatrix$FDR,
                       filename = "DEGs_volcano.png",
                       x.cut = 7,
                       y.cut = 10^-5,
-                      names = rownames(dataDEGs),
+                      names = rownames(DEGsmatrix),
                       color = c("black","red","dodgerblue3"),
                       names.size = 2,
                       xlab = " Gene expression fold change (Log2)",
@@ -552,17 +542,16 @@ TCGAVisualize_volcano(dataDEGs$logFC,dataDEGs$FDR,
                       width = 10)
 ```
 
-The figure resulted from the code above is shown below:
+The figure generated by the code above is shown below:
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
-library(png)
-library(grid)
 img <- readPNG("DEGs_volcano.png")
 grid.raster(img)
 ```
 
 ## `LPA`: Literature Phenotype Analysis
-The user can perform a literature phenotype analysis using the function `LPA`. 
+The user can perform a literature phenotype analysis using the function `LPA`, for example for the biological process 'apoptosis'. 
 
+<<<<<<< HEAD
 ```{r, eval = FALSE, echo = TRUE, results='hide'}
 require(MoonlightR)
 data("DiseaseList")
@@ -582,6 +571,21 @@ A results from LPA is shown below:
 knitr::kable(DiseaseList[[1]][1:10,c(1,3:5)], digits = 2, 
              caption = "Table LPA",
              row.names = FALSE)
+=======
+```{r, eval = TRUE, echo = TRUE, results='hide'}
+data(DEGsmatrix)
+
+BPselected <- "apoptosis"
+
+BPannotations <- DiseaseList[[match(BPselected,names(DiseaseList))]]$ID
+dataLPA <- LPA(dataDEGs = DEGsmatrix[1:5,],
+               BP =  BPselected,
+               BPlist = BPannotations)
+DiseaseListNew <- dataLPA
+names(DiseaseListNew) <- BPselected
+
+  
+>>>>>>> devel
 ```
 
 
@@ -589,7 +593,8 @@ knitr::kable(DiseaseList[[1]][1:10,c(1,3:5)], digits = 2,
 The user can perform a functional enrichment analysis using the function `FEAcomplete`. For each DEG in the gene set a z-score is calculated. This score indicates how the genes act in the gene set.
 
 ```{r, eval = TRUE, echo = TRUE, results='hide'}
-dataFEA <- FEA(DEGsmatrix = dataDEGs)
+data(DEGsmatrix)
+dataFEA <- FEA(DEGsmatrix = DEGsmatrix)
 ```
 
 The output can be visualized with a FEA plot. 
@@ -597,14 +602,12 @@ The output can be visualized with a FEA plot.
 ## `FEAplot`: Functional Enrichment Analysis Plot
 The user can plot the result of a functional enrichment analysis using the function `plotFEA`. A negative z-score indicates that the process' activity is decreased.  A positive z-score indicates that the process' activity is increased. 
 
-```{r, eval = TRUE, echo = TRUE, message=FALSE}
-plotFEA(dataFEA = dataFEA,plotNAME = "FEAplot",height = 20,width = 10)
+```{r, eval = TRUE, echo = TRUE, message=FALSE, results='hide', warning=FALSE}
+plotFEA(dataFEA = dataFEA, plotNAME = "FEAplot", height = 20, width = 10)
 ```
 
-The figure generated by the above core is shown below:
+The figure generated by the above code is shown below:
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
-library(png)
-library(grid)
 img <- readPNG("FEAplot.png")
 grid.raster(img)
 ```
@@ -613,11 +616,8 @@ grid.raster(img)
 ## `GRN`: Gene Regulatory Network
 The user can perform a gene regulatory network analysis using the function `GRN` which infers the network using the parmigene package.
 
-```{r, eval = FALSE}
-library(MoonlightR)
-data(DEGsmatrix)
-dataDEGs <- DEGsmatrix
-dataGRN <- GRN(TFs = rownames(dataDEGs)[1:10], normCounts = dataFilt,
+```{r, eval = TRUE}
+dataGRN <- GRN(TFs = rownames(DEGsmatrix)[1:5], normCounts = dataFilt,
 	               nGenesPerm = 10,kNearest = 3,nBoot = 10)
 ```
 
@@ -626,99 +626,35 @@ dataGRN <- GRN(TFs = rownames(dataDEGs)[1:10], normCounts = dataFilt,
 The user can perform upstream regulator analysis using the function `URA`. This function is applied to each DEG in the enriched gene set and its neighbors in the GRN.
 
 ```{r, eval = TRUE, echo = TRUE, results='hide'}
-library(MoonlightR)
-data(dataGRN) 
-dataURA <-URA(dataGRN = dataGRN,
-               DEGsmatrix = dataDEGs,
-               BPname = NULL)
+data(dataGRN)
+data(DEGsmatrix)
+dataURA <- URA(dataGRN = dataGRN,
+               DEGsmatrix = DEGsmatrix,
+               BPname = NULL, nCores=2)
 ```
 
 ## `PRA`: Pattern Regognition Analysis
 The user can retrieve TSG/OCG candidates using either selected biological processes or a random forest classifier trained on known COSMIC OCGs/TSGs.  
 
-```{r, eval = FALSE}
-library(MoonlightR)
-
- data(dataGRN)
- dataURA <-URA(dataGRN = dataGRN,
-               DEGsmatrix = dataDEGs,
-               BPname = NULL)
-
-dataDual <-PRA(dataURA = dataURA,
+```{r, eval = TRUE}
+data(dataURA)
+dataDual <- PRA(dataURA = dataURA,
                           BPname = c("apoptosis","proliferation of cells"),
                           thres.role = 0)
 ```
 
-## `plotCircos`: Moonlight Circos Plot
-The results of the moonlight pipeline can be visualized with a circos plot.
-Outer ring: color by cancer type, Inner ring: OCGs and TSGs, 
-Inner connections:  green: common OCGs yellow: common TSGs red: possible dual role
-```{r, eval = TRUE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
-plotCircos(listMoonlight = listMoonlight, additionalFilename = "_ncancer5")
-```
-
-The figure generated by the above core is shown below:
-```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
-library(png)
-library(grid)
-img <- readPNG("circos_ocg_tsg_ncancer5.png")
-grid.raster(img)
-```
-
-## Moonlight Replication in Cosmic cancer genes:
-
-Running moonlight with a list of already validated TSG and OCG. 
-
-```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
-library(MoonlightR)
-
-CosmicGenes <- c(knownDriverGenes$OCG, knownDriverGenes$TSG)
-   
-dataFilt <- get.data.TCGA(cancerType = "BRCA", 
-                          dataType = "Gene expression",
-                          directory = "data",
-                          nSample = 10)
-
-dataDEGs <- DPA(dataFilt = dataFilt,
-                dataType = "Gene expression")
-
-dataFEA <- FEA(DEGsmatrix = dataDEGs)
-
-dataGRN <- GRN(TFs = CosmicGenes, 
-               DEGsmatrix = dataDEGs,
-               DiffGenes = TRUE,
-               normCounts = dataFilt)
-
-dataURA <-URA(dataGRN = dataGRN, 
-              DEGsmatrix = dataDEGs, 
-              BPname = c("apoptosis",
-                         "proliferation of cells"))
-
-dataDual <-PRA(dataURA = dataURA, 
-               BPname = c("apoptosis",
-                          "proliferation of cells"),
-               thres.role = 1)
-
-CancerGenes <- c(names(dataDual$TSG), names(dataDual$OCG))
-
-dataURA[CancerGenes,]
-
-```
 
 ## `plotNetworkHive`: GRN hive visualization taking into account Cosmic cancer genes
 
 In the following plot the nodes are separated into three groups: known tumor suppressor genes (yellow), known oncogenes (green) and the rest (gray).
 
-```{r, eval = FALSE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
-library(MoonlightR)
-require(TCGAbiolinks)
+```{r, eval = TRUE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
 data(knownDriverGenes)
-plotNetworkHive(dataGRN, knownDriverGenes, 0.75)
+data(dataGRN)
+plotNetworkHive(dataGRN, knownDriverGenes, 0.55)
 ```
 
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
-library(png)
-library(grid)
 img <- readPNG("networkHive.png")
 grid.raster(img)
 ```
@@ -727,43 +663,35 @@ grid.raster(img)
 # TCGA Downstream Analysis: Case Studies
 
 ### Introduction 
-This vignette shows a complete workflow of the 'MoonlightR' package. 
-The code is divided in 4 case study:
+This vignette shows a complete workflow of the 'MoonlightR' package except for the data download.
+The code is divided into three case study:
 
 * 1. Downstream analysis LUAD using RNA expression data
 * 2. Expression pipeline Pan Cancer with five cancer types
 * 3. Expression pipeline with stages I II III IV (BRCA)
-* 4. Subtypes identification with cancer genes (KIRC)
 
 ## Case study n. 1: Downstream analysis LUAD
 
-```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
-library(MoonlightR)
-
-dataFilt <- get.data.TCGA(cancerType = "LUAD", 
-                          dataType = "Gene expression",
-                          directory = "data",
-                          nSample = 10)
-
+```{r,eval = TRUE,echo=TRUE,message=FALSE,warning=FALSE, results='hide'}
 dataDEGs <- DPA(dataFilt = dataFilt,
                 dataType = "Gene expression")
 
 dataFEA <- FEA(DEGsmatrix = dataDEGs)
 
-dataGRN <- GRN(TFs = rownames(dataDEGs)[1:1000], 
+dataGRN <- GRN(TFs = rownames(dataDEGs)[1:10], 
                DEGsmatrix = dataDEGs,
                DiffGenes = TRUE,
                normCounts = dataFilt)
 
-dataURA <-URA(dataGRN = dataGRN, 
+dataURA <- URA(dataGRN = dataGRN, 
               DEGsmatrix = dataDEGs, 
               BPname = c("apoptosis",
                          "proliferation of cells"))
 
-dataDual <-PRA(dataURA = dataURA, 
+dataDual <- PRA(dataURA = dataURA, 
                BPname = c("apoptosis",
                           "proliferation of cells"),
-               thres.role = 1)
+               thres.role = 0)
 
 CancerGenes <- list("TSG"=names(dataDual$TSG), "OCG"=names(dataDual$OCG))
 
@@ -771,16 +699,14 @@ CancerGenes <- list("TSG"=names(dataDual$TSG), "OCG"=names(dataDual$OCG))
 
 
 ## `plotURA`: Upstream regulatory analysis plot
-The user can plot upstream regulatory analysis using the function `plotURA`.
+The user can plot the result of the upstream regulatory analysis using the function `plotURA`.
 
-```{r, eval = FALSE}
- plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],plotNAME = "URAplot")
+```{r, eval = TRUE,message=FALSE,warning=FALSE, results='hide'}
+ plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),, drop = FALSE], plotNAME = "URAplot")
  ```
 
 The figure resulted from the code above is shown below:
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
-library(png)
-library(grid)
 img <- readPNG("URAplot.png")
 grid.raster(img)
 ```
@@ -790,9 +716,7 @@ grid.raster(img)
 
 ## Case study n. 2: Expression pipeline Pan Cancer 5 cancer types
 
-```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
-library(MoonlightR)
-
+```{r,eval = FALSE,echo=TRUE,message=FALSE,warning=FALSE}
 cancerList <- c("BLCA","COAD","ESCA","HNSC","STAD")
 
 listMoonlight <- moonlight(cancerType = cancerList, 
@@ -804,14 +728,19 @@ listMoonlight <- moonlight(cancerType = cancerList,
                       BPname = c("apoptosis","proliferation of cells"))
 save(listMoonlight, file = paste0("listMoonlight_ncancer4.Rdata"))
 
+```
+
+## `plotCircos`: Moonlight Circos Plot
+The results of the moonlight pipeline can be visualized with a circos plot.
+Outer ring: color by cancer type, Inner ring: OCGs and TSGs, 
+Inner connections:  green: common OCGs yellow: common TSGs red: possible dual role
+
+```{r, eval = TRUE, echo = TRUE, results='hide', warning = FALSE, message = FALSE}
 plotCircos(listMoonlight = listMoonlight, additionalFilename = "_ncancer5")
 ```
 
-
-The figure resulted from the code above is shown below:
+The figure generated by the code above is shown below:
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
-library(png)
-library(grid)
 img <- readPNG("circos_ocg_tsg_ncancer5.png")
 grid.raster(img)
 ```
@@ -819,8 +748,7 @@ grid.raster(img)
 
 ## Case study n. 3: Downstream analysis BRCA with stages
 
-```{r,eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE}
-library(MoonlightR)
+```{r,eval = FALSE,echo=TRUE,message=FALSE,warning=FALSE}
 
 listMoonlight <- NULL
 for (i in 1:4){
@@ -828,7 +756,7 @@ for (i in 1:4){
                       dataType = "Gene expression",
                       directory = "data",
                       nSample = 10,
-                      nTF = 100,
+                      nTF = 5,
                       DiffGenes = TRUE,
                       BPname = c("apoptosis","proliferation of cells"),
                       stage = i)
@@ -837,71 +765,55 @@ for (i in 1:4){
 }
 names(listMoonlight) <- c("stage1", "stage2", "stage3", "stage4")
 
-plotCircos(listMoonlight = listMoonlight, additionalFilename = "_stages")
+# Prepare mutation data for stages
+
+mutation <- GDCquery_Maf(tumor = "BRCA")
+
+res.mutation <- NULL
+for(stage in 1:4){
+  
+  curStage <- paste0("Stage ", as.roman(stage))
+                dataClin$tumor_stage <- toupper(dataClin$tumor_stage)
+                dataClin$tumor_stage <- gsub("[ABCDEFGH]","",dataClin$tumor_stage)
+                dataClin$tumor_stage <- gsub("ST","Stage",dataClin$tumor_stage)
+
+                dataStg <- dataClin[dataClin$tumor_stage %in% curStage,]
+                message(paste(curStage, "with", nrow(dataStg), "samples"))
+dataSmTP <- mutation$Tumor_Sample_Barcode
+                
+                dataStgC <- dataSmTP[substr(dataSmTP,1,12) %in% dataStg$bcr_patient_barcode]
+                dataSmTP <- dataStgC
+  
+                info.mutation <- mutation[mutation$Tumor_Sample_Barcode %in% dataSmTP,]
+  
+     ind <- which(info.mutation[,"Consequence"]=="inframe_deletion")
+     ind2 <- which(info.mutation[,"Consequence"]=="inframe_insertion")
+     ind3 <- which(info.mutation[,"Consequence"]=="missense_variant")
+    res.mutation <- c(res.mutation, list(info.mutation[c(ind, ind2, ind3),c(1,51)]))
+	}
+names(res.mutation) <- c("stage1", "stage2", "stage3", "stage4")
 
 
+tmp <- NULL
+tmp <- c(tmp, list(listMoonlight[[1]][[1]]))
+tmp <- c(tmp, list(listMoonlight[[2]][[1]]))
+tmp <- c(tmp, list(listMoonlight[[3]][[1]]))
+tmp <- c(tmp, list(listMoonlight[[4]][[1]]))
+names(tmp) <- names(listMoonlight)
+
+ mutation <- GDCquery_Maf(tumor = "BRCA")    
+
+ plotCircos(listMoonlight=listMoonlight,listMutation=res.mutation, additionalFilename="proc2_wmutation", intensityColDual=0.2,fontSize = 2)
 ```
+The results of the moonlight pipeline can be visualized with a circos plot.
+Outer ring: color by cancer type, Inner ring: OCGs and TSGs, 
+Inner connections:  green: common OCGs yellow: common TSGs red: possible dual role
 
-
-The figure resulted from the code above is shown below:
+The figure generated by the code above is shown below:
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
-library(png)
-library(grid)
 img <- readPNG("circos_ocg_tsg_stages.png")
 grid.raster(img)
 ```
-
-## Moonlight working with molecular subtypes data.
-
-In this section we showed downstream analysis with replication of Moonlight in TCGA's data within comparison of different molecular subtypes and normal samples.
-You can use the function `TCGAquery_subtype` from TCGAbiolinks to retrieve this information.
-
-The Cancer Genome Atlas (TCGA) Research Network has reported integrated genome-wide 
-studies of various diseases. We have added some of the subtypes defined by these
-report in our package. The ACC[@ref22], BRCA [@ref11], COAD [@ref12], GBM [@ref8], HNSC [@ref14], KICH [@ref15], KIRC[@ref21], KIRP [@ref20], LGG [@ref8], LUAD [@ref9], 
-LUSC[@ref16], PRAD[@ref19], READ [@ref12],  SKCM [@ref13], STAD [@ref10], THCA [@ref18], UCEC [@ref17] tumors have data added. 
-
-```{r, eval = FALSE, echo = FALSE}
-# Check with subtypes from TCGAprepare and update examples
-cancerType <- "BRCA"
-dataSubt <- TCGAquery_subtype(tumor = "all")
-dataSubt_Cancer <- dataSubt[dataSubt$Disease %in% cancerType,]
-colSubtype <- "PAM50.mRNA"
-
-CancerSubtypes <- names(table(dataSubt_Cancer[,colSubtype]))
-
-subtype <- CancerSubtypes[1]
-dataSmSubt <- dataSubt_Cancer[dataSubt_Cancer$PAM50.mRNA %in% subtype,]
-
-dataFilt <- get.data.TCGA(cancerType = cancerType, 
-                          dataType = "Gene expression",
-                          directory = "data",
-                          nSample = 10,
-                          subtype = subtype,
-                          samples = dataSmSubt$patient)
-dataDual <- moonlight(cancerType =cancerType, 
-                      dataType = "Gene expression",
-                      directory = "data",
-                      nSample = 10,
-                      subtype = subtype,
-                      samples = dataSmSubt$patient,
-                      nTF = 100,
-                      DiffGenes = TRUE,
-                      BPname = c("apoptosis","proliferation of cells"))
-                
-
-```
-
-A subset of the lgg subytpe is shown below:
-
-```{r, eval = TRUE, echo = FALSE}
-lgg.gbm.subtype <- TCGAquery_subtype(tumor = "lgg")
-knitr::kable(lgg.gbm.subtype[1:10,c(1,2,3,4)], digits = 2, 
-             caption = "Table with LGG molecular subtypes from TCGAquery_subtype",
-             row.names = TRUE)
-```
-
-
 
 ******
 

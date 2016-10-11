@@ -41,8 +41,10 @@ moonlight <- function(cancerType="panCancer", dataType="Gene expression",
                       nBoot = 100, nTF = NULL, nSample=NULL,thres.role = 0, 
                       stage = NULL,subtype = 0, samples = NULL){
 
+  GDCprojects <- get("GDCprojects")
+  
     if(length(cancerType) == 1 && cancerType == "panCancer"){
-        cancerType <- sort(sapply(strsplit(grep("TCGA",TCGAbiolinks:::getGDCprojects()$project_id,value=TRUE),"TCGA-"),"[",2))
+        cancerType <- sort(sapply(strsplit(grep("TCGA",GDCprojects,value=TRUE),"TCGA-"),"[",2))
     }
 
     res <- NULL
@@ -54,7 +56,7 @@ moonlight <- function(cancerType="panCancer", dataType="Gene expression",
         print("-----------------------------------------")
         print(paste("cancer type:", cancer.i))
 
-        dataFilt <- get.data.TCGA(cancerType = cancer.i, dataType = dataType, 
+        dataFilt <- getDataTCGA(cancerType = cancer.i, dataType = dataType, 
                                   directory = directory, cor.cut = cor.cut, qnt.cut = qnt.cut, 
                                   nSample = nSample,stage = stage, 
                                   subtype = subtype, samples = samples)

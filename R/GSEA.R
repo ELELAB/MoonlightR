@@ -1,9 +1,11 @@
-#' GSEA
+ #' GSEA
 #'
 #' This function carries out the GSEA enrichment analysis.
 #' @param DEGsmatrix DEGsmatrix output from DEA such as dataDEGs
 #' @param top is the number of top BP to plot
 #' @param plot if TRUE return a GSEA's plot
+#' @importFrom grDevices dev.list
+#' @importFrom grDevices graphics.off
 #' @importFrom clusterProfiler bitr 
 #' @importFrom DOSE gseDO 
 #' @importFrom DOSE plot
@@ -50,7 +52,7 @@ GSEA <- function (DEGsmatrix, top, plot = FALSE){
   topID <- res[1,1]
  pdf("GSEAplot.pdf")
   DOSE::plot(y, geneSetID = topID)
-  dev.off()
+  if (!(is.null(dev.list()["RStudioGD"]))){graphics.off()}
   }
 
   return(res)

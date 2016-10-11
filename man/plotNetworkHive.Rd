@@ -20,7 +20,8 @@ no results Hive plot is executed
 This function visualizes the GRN as a hive plot
 }
 \examples{
-dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
-# to change with moonlight
+data(knownDriverGenes)
+data(dataGRN)
+plotNetworkHive(dataGRN = dataGRN, namesGenes = knownDriverGenes, thres = 0.55)
 }
 

@@ -4,12 +4,23 @@
 #' @param dataDEGs is output from DEA
 #' @param BP is biological process
 #' @param BPlist is list of genes annotated in BP
-#' @importFrom RISmed EUtilsSummary
-#' @importFrom RISmed EUtilsGet 
+#' @import RISmed 
 #' @importFrom utils txtProgressBar
 #' @importFrom utils setTxtProgressBar
 #' @export
+<<<<<<< HEAD
 #' @return table with number of pubmed that affects, increase or decrease genes annotated in BP
+=======
+#' @return table with number of pubmed that affects, increase or decrase genes annotated in BP
+#' @examples
+#' data(DEGsmatrix)
+#' BPselected <- c("apoptosis")
+#' BPannotations <- DiseaseList[[match(BPselected, names(DiseaseList))]]$ID
+#' dataLPA <- LPA(dataDEGs = DEGsmatrix[1:5,],
+#'                  BP =  BPselected,
+#'                  BPlist = BPannotations)
+
+>>>>>>> devel
 LPA <- function (dataDEGs, BP, BPlist) {
     
   BPgenesDEGs <- intersect(BPlist, rownames(dataDEGs))

@@ -4,14 +4,17 @@
 #' @param dataGRN output GRN function
 #' @param namesGenes list TSG and OCG to define axes
 #' @param thres threshold of edges to be included
-#' @importFrom HiveR plotHive
-#' @importFrom HiveR adj2HPD
+#' @import HiveR
 #' @importFrom graphics plot.new
+#' @importFrom grid gpar
+#' @importFrom grDevices pdf
+#' @importFrom grDevices dev.off
 #' @export
 #' @return no results Hive plot is executed
 #' @examples
-#' dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
-#' # to change with moonlight
+#' data(knownDriverGenes)
+#' data(dataGRN)
+#' plotNetworkHive(dataGRN = dataGRN, namesGenes = knownDriverGenes, thres = 0.55)
 plotNetworkHive <- function(dataGRN, namesGenes, thres){
 
     names.genes.all <- intersect(as.character(unique(c(unlist(namesGenes), rownames(dataGRN[[1]])))),colnames(dataGRN[[1]]))
@@ -49,5 +52,6 @@ plotNetworkHive <- function(dataGRN, namesGenes, thres){
 
     pdf("networkHive.pdf")
     HiveR::plotHive(myadj, axLabs = c("remaining TFs", "OCG", "TSG"), bkgnd="white", anNode.gpar=gpar(fontsize = 10, col = "black", lwd = 0.5))
+    # if( (which = dev.cur()) != 1){graphics.off() }
     dev.off()
 }
