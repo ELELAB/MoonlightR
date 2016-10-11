@@ -594,7 +594,7 @@ grid.raster(img)
 The user can perform a gene regulatory network analysis using the function `GRN` which infers the network using the parmigene package.
 
 ```{r, eval = TRUE}
-dataGRN <- GRN(TFs = rownames(DEGsmatrix)[1:5], normCounts = dataFilt,
+dataGRN <- GRN(TFs = rownames(DEGsmatrix)[1:100], normCounts = dataFilt,
 	               nGenesPerm = 10,kNearest = 3,nBoot = 10)
 ```
 
