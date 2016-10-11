@@ -1,5 +1,5 @@
 ---
-title: "Moonlight: an approach to identify multiple role of biomarkers as oncogene or oncosuppressor in different tumor types and stages."
+title: "Moonlight: an approach to identify multiple role of biomarkers as oncogene or tumorsuppressor in different tumor types and stages."
 author: "Antonio Colaprico^+^ ,
         Catharina Olsen^+^,
         Claudia Cava, 
@@ -387,7 +387,7 @@ We propose `MoonlightR` a new approach to define TSGs and OCGs based on function
 
 # Moonlight's pipeline
 
-The figure from Moonlight's pipeline is shown below:
+Moonlight's pipeline is shown below:
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
 library(png)
 library(grid)
@@ -399,16 +399,16 @@ grid.raster(img)
 
 The proposed pipeline consists of following eight steps:
 
-1. **getDataTCGA** for Data collection: expression levels of genes in all samples obtained with IlluminaHiSeq RNASeqV2 in 18 normal tissues (NT) and 18 cancer tissues (CT) according to TCGA criteria, and GEO data set matched to one of the 18 given TCGA cancer types as described in following Table TCGA / GEO.
+1. **getDataTCGA** \& **getDataGEO** for Data collection: expression levels of genes in all samples obtained with IlluminaHiSeq RNASeqV2 in 18 normal tissues (NT) and 18 cancer tissues (CT) according to TCGA criteria, and GEO data set matched to one of the 18 given TCGA cancer types as described in following Table TCGA / GEO.
 2. **DPA** Differential Phenotype Analysis (DEA) to identify genes or probes that are different significantly with two phenotypes such as normal and tumor, or normal and stageI, normal and molecular subtype.
 3. **FEA** Functional Enrichment Analysis (EA), using Fisher's test, to identify gene sets (with biological functions linked to cancer<sup>1</sup>) significantly enriched by RG.
-4. **GRN** Gene regulatory network inferred between each single DEG (sDEG) and all genes obtained by means of mutual information, obtaining for each DEG a list of regulated genes (RG).
-5. **URA** Upstream Regulator Analysis For DEGs in each enriched gene set, we applied  Z.Score being the ratio between the sum of all predicted effects for all the gene involved in the specific function and the square-root of the number of all genes.
+4. **GRN** Gene regulatory network inferred between each single DEG (sDEG) and all genes by means of mutual information, obtaining for each DEG a list of regulated genes (RG).
+5. **URA** Upstream Regulator Analysis for DEGs in each enriched gene set, we applied z-score being the ratio between the sum of all predicted effects for all the gene involved in the specific function and the square-root of the number of all genes.
 6. **PRA** Pattern recognition analysis identifies candidate TCGs (down) and OCGs (up). We either use user defined biological processes or random forests.
-7. We applied the above procedure to multiple cancer types to obtain cancer-specific lists of TCGs and OCGs . We compared the lists for each cancer: if a sDEG was TSG in a cancer and OCG in another we defined it as dual-role TSG-OCG. Otherwise if we found a sDEG defined as OCG or TSG only in one tissue we defined it tissue specific biomarker.
+7. We applied the above procedure to multiple cancer types to obtain cancer-specific lists of TCGs and OCGs. We compared the lists for each cancer: if a sDEG was TSG in a cancer and OCG in another we defined it as dual-role TSG-OCG. Otherwise if we found a sDEG defined as OCG or TSG only in one tissue we defined it tissue specific biomarker.
 8. We use the COSMIC database to define a list of gold standard TSG and OCGs to assess the accuracy of the proposed method.
 
-<sup>1</sup> For the devel version of MoonlightR we use a short extract of 100 biological functions from QIAGEN'S Ingenuity Pathway Analysis (IPA). We are still working to integrate the\Biocpkg{ReactomePA} package.
+<sup>1</sup> For the devel version of MoonlightR we use a short extract of ten biological functions from QIAGEN'S Ingenuity Pathway Analysis (IPA). We are still working to integrate the\Biocpkg{ReactomePA} package.
 
 # Installation
 
@@ -436,7 +436,7 @@ Related publications to this package:
 You can search TCGA data using the `getDataTCGA` function.
 
 
-## `getDataTCGA`: Searching by cancer type and data type [Gene Expression]
+## `getDataTCGA`: Search by cancer type and data type [Gene Expression]
 The user can query and download the cancer types supported by TCGA, using the function `getDataTCGA`:
 In this example we used LUAD gene expression data with only 4 samples to reduce time downloading.
 
@@ -447,7 +447,7 @@ dataFilt <- getDataTCGA(cancerType = "LUAD",
                           nSample = 4)
 ```
 
-## `getDataTCGA`: Searching by cancer type and data type [Methylation]
+## `getDataTCGA`: Search by cancer type and data type [Methylation]
 The user can also query and download methylation data using the function `getDataTCGA`:
 
 
@@ -462,7 +462,7 @@ dataFilt <- getDataTCGA(cancerType = "BRCA",
 
 You can search GEO data using the `getDataGEO` function.
 
-GEO_TCGAtab a 18x12 matrix that provides the GEO data set we matched to one of the 18 given TCGA cancer types 
+GEO_TCGAtab: a 18x12 matrix that provides the GEO data set we matched to one of the 18 given TCGA cancer types 
 
 ```{r, eval = TRUE, echo = TRUE}
 knitr::kable(GEO_TCGAtab, digits = 2, 
@@ -473,7 +473,7 @@ knitr::kable(GEO_TCGAtab, digits = 2,
 
 
 
-## `getDataGEO`: Searching by cancer type and data type [Gene Expression]
+## `getDataGEO`: Search by cancer type and data type [Gene Expression]
 The user can query and download the cancer types supported by GEO, using the function `getDataGEO`:
 
 ```{r, eval = FALSE , echo = TRUE, results='hide', warning = FALSE, message = FALSE}
@@ -488,11 +488,11 @@ dataFilt <- getDataGEO(TCGAtumor = "ESCA")
 
 ## `DPA`: Differential Phenotype Analysis
 
-Differential Phenotype analysis is able to identify genes or probes that are significantly different between two phenotypes such as normal vs. tumor, or normal vs. stageI, normal vs. molecular subtype.
+Differential phenotype analysis is able to identify genes or probes that are significantly different between two phenotypes such as normal vs. tumor, or normal vs. stageI, normal vs. molecular subtype.
 
 For gene expression data, DPA is running a differential expression analysis (DEA) to identify differentially expressed genes (DEGs) using the `TCGAanalyze_DEA` function from \Biocpkg{TCGAbiolinks}.
 
-For methylation data DPA is running a differentially methylated regions analysis (DMR) to identify 
+For methylation data, DPA is running a differentially methylated regions analysis (DMR) to identify 
 differentially methylated CpG sites using the `TCGAanalyze_DMR` the `TCGAanalyze_DMR` function from \Biocpkg{TCGAbiolinks}.
 
 
@@ -542,7 +542,7 @@ TCGAVisualize_volcano(DEGsmatrix$logFC, DEGsmatrix$FDR,
                       width = 10)
 ```
 
-The figure resulted from the code above is shown below:
+The figure generated by the code above is shown below:
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
 img <- readPNG("DEGs_volcano.png")
 grid.raster(img)
@@ -621,11 +621,6 @@ dataDual <- PRA(dataURA = dataURA,
                           thres.role = 0)
 ```
 
-The figure generated by the above code is shown below:
-```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
-img <- readPNG("circos_ocg_tsg_ncancer5.png")
-grid.raster(img)
-```
 
 ## `plotNetworkHive`: GRN hive visualization taking into account Cosmic cancer genes
 
@@ -646,7 +641,7 @@ grid.raster(img)
 # TCGA Downstream Analysis: Case Studies
 
 ### Introduction 
-This vignette shows a complete workflow of the 'MoonlightR' package. Everything but the data download.
+This vignette shows a complete workflow of the 'MoonlightR' package except for the data download.
 The code is divided into three case study:
 
 * 1. Downstream analysis LUAD using RNA expression data
@@ -682,7 +677,7 @@ CancerGenes <- list("TSG"=names(dataDual$TSG), "OCG"=names(dataDual$OCG))
 
 
 ## `plotURA`: Upstream regulatory analysis plot
-The user can plot upstream regulatory analysis using the function `plotURA`.
+The user can plot the result of the upstream regulatory analysis using the function `plotURA`.
 
 ```{r, eval = TRUE,message=FALSE,warning=FALSE, results='hide'}
  plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),, drop = FALSE], plotNAME = "URAplot")
@@ -722,7 +717,7 @@ Inner connections:  green: common OCGs yellow: common TSGs red: possible dual ro
 plotCircos(listMoonlight = listMoonlight, additionalFilename = "_ncancer5")
 ```
 
-The figure resulted from the code above is shown below:
+The figure generated by the code above is shown below:
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}
 img <- readPNG("circos_ocg_tsg_ncancer5.png")
 grid.raster(img)
