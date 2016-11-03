@@ -5,8 +5,8 @@
 \title{plotFEA}
 \usage{
 plotFEA(dataFEA, topBP = 10, additionalFilename = NULL, height, width,
-  offsetValue = 5, angle = 90, xleg = 35, yleg = 5, minY = -5,
-  maxY = 10)
+  bar.colors = c("#8DD3C7", "#FFFFB3", "#BEBADA"), offsetValue = 5,
+  angle = 90, xleg = 35, yleg = 5, minY = -5, maxY = 10)
 }
 \arguments{
 \item{dataFEA}{dataFEA}
@@ -18,6 +18,8 @@ plotFEA(dataFEA, topBP = 10, additionalFilename = NULL, height, width,
 \item{height}{Figure height}
 
 \item{width}{Figure width}
+
+\item{bar.colors}{Colors of the bars.}
 
 \item{offsetValue}{offsetValue}
 
