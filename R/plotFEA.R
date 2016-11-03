@@ -60,8 +60,8 @@ plotFEA <- function(dataFEA,
   
   #toPlot <-as.numeric(toPlot)
   simpleCap <- function(x) {
-    s <- strsplit(x, " ")[[1]]
-    paste(toupper(substring(s, 1,1)), substring(s, 2),
+    s <- x
+    paste(toupper(substring(s, first = 1, last = 1)), substring(s, 2),
           sep="", collapse=" ")
   }
   colnames(toPlot) <-  paste(sapply(tmp$Diseases.or.Functions.Annotation, simpleCap), " (n=", tmp$commonNg, ")")
