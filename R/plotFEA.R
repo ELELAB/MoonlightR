@@ -25,7 +25,7 @@ plotFEA <- function(dataFEA,
                     additionalFilename = NULL, 
                     height, 
                     width,
-                    bar.colors = c("#8DD3C7", "#FFFFB3", "#BEBADA"),
+                    bar.colors = c("darkgreen", "gold", "navy"),
                     offsetValue = 5, 
                     angle = 90, 
                     xleg = 35, 
@@ -77,23 +77,28 @@ plotFEA <- function(dataFEA,
     theme(panel.background = element_blank(),
           panel.grid.major = element_blank(), 
           panel.grid.minor = element_blank(),
-          axis.text.x = element_text(size = 16),
+          axis.title.y=element_text(margin=margin(0,20,0,10)),
+          axis.text.x = element_text(size = 12),
           strip.background = element_blank(),
           strip.text.x = element_blank(),
           axis.ticks.length = unit(.2, "cm"),
           legend.key = element_rect(colour = 'white'),
+          #axis.text.y = element_text(angle = 90, hjust = 1),
           legend.position="top",
           axis.ticks.y = element_line(colour = "black"),
           axis.line.y = element_line(colour = "black"),
+          panel.margin.x=unit(1.5, "lines"),
           strip.text.y = element_blank()
     ) +  scale_y_continuous(breaks=c(seq(minY,maxY,1)),expand = c(0, 0.6)) +
     coord_cartesian(ylim = c(min(toPlot$value),max(toPlot$value))) +
     geom_hline(aes(yintercept = 0),
-               colour = "black", linetype = "dashed")
+               colour = "black")
   
 
   if(!is.null(additionalFilename)){
-    ggsave(file = paste0("plotFEA",additionalFilename,".pdf"))
+    ggsave(plot = p, file = paste0("plotFEA",additionalFilename,".pdf"))
+  } else {
+    plot(p)
   }
   
 }
