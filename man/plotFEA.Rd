@@ -5,8 +5,8 @@
 \title{plotFEA}
 \usage{
 plotFEA(dataFEA, topBP = 10, additionalFilename = NULL, height, width,
-  bar.colors = c("darkgreen", "gold", "navy"), offsetValue = 5,
-  angle = 90, xleg = 35, yleg = 5, minY = -5, maxY = 10)
+  offsetValue = 5, angle = 90, xleg = 35, yleg = 5, minY = -5,
+  maxY = 10)
 }
 \arguments{
 \item{dataFEA}{dataFEA}
@@ -18,8 +18,6 @@ plotFEA(dataFEA, topBP = 10, additionalFilename = NULL, height, width,
 \item{height}{Figure height}
 
 \item{width}{Figure width}
-
-\item{bar.colors}{Colors of the bars.}
 
 \item{offsetValue}{offsetValue}
 
@@ -43,4 +41,3 @@ This function visualize the functional enrichment analysis (FEA)'s barplot
 dataFEA <- FEA(DEGsmatrix = DEGsmatrix)
 plotFEA(dataFEA = dataFEA, additionalFilename = "_example",height = 20,width = 10)
 }
-

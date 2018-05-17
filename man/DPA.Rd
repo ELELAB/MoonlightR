@@ -38,4 +38,3 @@ This function carries out the differential phenotypes analysis
 \examples{
 dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
 }
-

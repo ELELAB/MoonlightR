@@ -22,4 +22,3 @@ dataDEGs <- DPA(dataFilt = dataFilt,
 dataType = "Gene expression")
 dataFEA <- FEA(DEGsmatrix = dataDEGs)
 }
-

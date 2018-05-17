@@ -18,4 +18,3 @@ a 101x3 matrix
 }
 }
 \keyword{datasets}
-

@@ -27,4 +27,3 @@ dataLPA <- LPA(dataDEGs = DEGsmatrix[1:5,],
                  BP =  BPselected,
                  BPlist = BPannotations)
 }
-

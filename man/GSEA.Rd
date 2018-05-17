@@ -23,4 +23,3 @@ This function carries out the GSEA enrichment analysis.
 dataDEGs <- DEGsmatrix
 # dataFEA <- GSEA(DEGsmatrix = dataDEGs)
 }
-

@@ -70,4 +70,3 @@ Providing different solutions:
 dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
 # to change with moonlight
 }
-

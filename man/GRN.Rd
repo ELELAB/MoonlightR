@@ -38,4 +38,3 @@ DEGsmatrix = dataDEGs,
 DiffGenes = TRUE,
 normCounts = dataFilt)
 }
-

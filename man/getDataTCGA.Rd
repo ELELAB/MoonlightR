@@ -11,8 +11,7 @@ getDataTCGA(cancerType, dataType, directory, cor.cut = 0.6, qnt.cut = 0.25,
 \item{cancerType}{select cancer type for which analysis should be run. panCancer
 for all available cancer types in TCGA. Defaults to panCancer}
 
-\item{dataType}{is dataType such as gene expression, cnv, DNA methylation etc. 
-Options: "Methylation" (27k) and "Gene expression"}
+\item{dataType}{is dataType such as gene expression, cnv, methylation etc.}
 
 \item{directory}{Directory/Folder where the data was downloaded. Default: GDCdata}
 
@@ -34,14 +33,11 @@ Options: "Methylation" (27k) and "Gene expression"}
 returns filtered TCGA data
 }
 \description{
-This function retrieves and prepares TCGA data (hg19)
+This function retrieves and prepares TCGA data
 }
 \examples{
 \dontrun{
 dataFilt <- getDataTCGA(cancerType = "LUAD", 
-                        dataType = "Gene expression", 
-                        directory = "data", 
-                        nSample = 4)
+dataType = "Gene expression", directory = "data", nSample = 4)
 }
 }
-

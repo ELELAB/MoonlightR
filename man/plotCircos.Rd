@@ -32,4 +32,3 @@ This function visualize the plotCircos
 \examples{
 plotCircos(listMoonlight = listMoonlight, additionalFilename = "_ncancer5")
 }
-

@@ -24,4 +24,3 @@ This function retrieves and prepares GEO data
 dataGEO <-  getDataGEO(GEOobject = "GSE20347",platform = "GPL571")
 }
 }
-

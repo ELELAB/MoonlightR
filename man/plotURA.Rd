@@ -24,4 +24,3 @@ BPname = c("apoptosis","proliferation of cells"),
 thres.role = 0)
 plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],additionalFilename = "_example")
 }
-

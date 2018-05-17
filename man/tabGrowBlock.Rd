@@ -20,4 +20,3 @@ A data set containing the following data:
 }
 }
 \keyword{datasets}
-
