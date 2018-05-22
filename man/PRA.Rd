@@ -27,3 +27,4 @@ dataDual <- PRA(dataURA = dataURA,
 BPname = c("apoptosis","proliferation of cells"),
 thres.role = 0)
 }
+
