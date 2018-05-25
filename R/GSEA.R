@@ -8,7 +8,7 @@
 #' @importFrom grDevices graphics.off
 #' @importFrom clusterProfiler bitr 
 #' @importFrom DOSE gseDO 
-#' @importFrom DOSE plot
+#' @importFrom DOSE simplot
 #' @return return GSEA result
 #' @export
 #' @examples
@@ -51,7 +51,7 @@ GSEA <- function (DEGsmatrix, top, plot = FALSE){
   if (plot == TRUE){
   topID <- res[1,1]
  pdf("GSEAplot.pdf")
-  DOSE::plot(y, geneSetID = topID)
+  DOSE::simplot(y, geneSetID = topID)
   if (!(is.null(dev.list()["RStudioGD"]))){graphics.off()}
   }
 
