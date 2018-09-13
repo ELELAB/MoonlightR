@@ -109,6 +109,8 @@ FEA <- function (BPname = NULL, DEGsmatrix){
 
     close(pb)
 
+    TableDiseasesNew <- cbind(TableDiseasesNew, FDR = p.adjust(TableDiseasesNew$p.Value,method = "fdr") )
+
     return(TableDiseasesNew)
 }
 
