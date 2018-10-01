@@ -5,8 +5,8 @@
 \title{DPA}
 \usage{
 DPA(dataType, dataFilt, dataConsortium = "TCGA", fdr.cut = 0.01,
-  logFC.cut = 1, diffmean.cut = 0.25, samplesType, colDescription, gset,
-  gsetFile = "gsetFile.RData")
+  logFC.cut = 1, diffmean.cut = 0.25, samplesType, colDescription,
+  gset, gsetFile = "gsetFile.RData")
 }
 \arguments{
 \item{dataType}{selected}

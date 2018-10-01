@@ -3,6 +3,7 @@
 #' This function carries out the functional enrichment analysis (FEA)
 #' @param BPname BPname biological process such as "proliferation of cells", "ALL" (default) if FEA should be carried out for all 101 biological processes
 #' @param DEGsmatrix DEGsmatrix output from DEA such as dataDEGs"
+#' @importFrom stats p.adjust
 #' @return matrix from FEA
 #' @export
 #' @examples
@@ -118,6 +119,8 @@ FEA <- function (BPname = NULL, DEGsmatrix){
                                  "commonNg",
                                  "FunctionNg",
                                  "Molecules"))
+
+    TableDiseasesNew <- TableDiseasesNew[order(abs(TableDiseasesNew$Moonlight.Z.score),decreasing = TRUE),]
 
     return(TableDiseasesNew)
 }

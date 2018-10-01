@@ -26,4 +26,3 @@ data(knownDriverGenes)
 data(dataGRN)
 plotNetworkHive(dataGRN = dataGRN, namesGenes = knownDriverGenes, thres = 0.55)
 }
-

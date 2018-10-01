@@ -602,12 +602,17 @@ dataGRN <- GRN(TFs = rownames(DEGsmatrix)[1:100], normCounts = dataFilt,
 ## `URA`: Upstream Regulator Analysis
 The user can perform upstream regulator analysis using the function `URA`. This function is applied to each DEG in the enriched gene set and its neighbors in the GRN.
 
-```{r, eval = TRUE, echo = TRUE, results='hide'}
+```{r, eval = FALSE, echo = TRUE, results='hide'}
 data(dataGRN)
 data(DEGsmatrix)
+
+dataFEA <- FEA(DEGsmatrix = DEGsmatrix)
+
+BPselected <- dataFEA$Diseases.or.Functions.Annotation[1:5]
 dataURA <- URA(dataGRN = dataGRN,
                DEGsmatrix = DEGsmatrix,
-               BPname = NULL, nCores=2)
+               BPname = BPselected, 
+               nCores=1)
 ```
 
 ## `PRA`: Pattern Regognition Analysis
@@ -644,7 +649,7 @@ The code is divided into three case study:
 
 ## Case study n. 1: Downstream analysis LUAD
 
-```{r,eval = TRUE,echo=TRUE,message=FALSE,warning=FALSE, results='hide'}
+```{r,eval = FALSE,echo=TRUE,message=FALSE,warning=FALSE, results='hide'}
 dataDEGs <- DPA(dataFilt = dataFilt,
                 dataType = "Gene expression")
 
