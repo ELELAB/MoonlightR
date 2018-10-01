@@ -7,7 +7,7 @@ Author: Antonio Colaprico*, Catharina Olsen*, Claudia Cava, Thilde
         Terkelsen, Laura Cantini, Andre Olsen, Gloria Bertoli, Andrei
         Zinovyev, Emmanuel Barillot, Isabella Castiglioni, Elena
         Papaleo, Gianluca Bontempi
-Maintainer: Antonio Colaprico <antonio.colaprico@ulb.ac.be>, Catharina
+Maintainer: Antonio Colaprico <axc1833@med.miami.edu>, Catharina
         Olsen <colsen@ulb.ac.be>
 Depends: R (>= 3.3), doParallel, foreach
 Imports: parmigene, randomForest, SummarizedExperiment, gplots,
