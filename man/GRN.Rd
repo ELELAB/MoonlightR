@@ -5,7 +5,7 @@
 \title{Generate network}
 \usage{
 GRN(TFs, DEGsmatrix, DiffGenes = FALSE, normCounts, kNearest = 3,
-  nGenesPerm = 10, nBoot = 10, seed = 12345)
+  nGenesPerm = 10, nBoot = 10)
 }
 \arguments{
 \item{TFs}{a vector of genes.}
@@ -16,14 +16,12 @@ GRN(TFs, DEGsmatrix, DiffGenes = FALSE, normCounts, kNearest = 3,
 
 \item{normCounts}{is a matrix of gene expression with genes in rows and samples in columns.}
 
-\item{kNearest}{the number of nearest neighbors to consider to estimate the mutual information.}
+\item{kNearest}{the number of nearest neighbors to consider to estimate the mutual information.
+Must be less than the number of columns of normCounts.}
 
 \item{nGenesPerm}{nGenesPerm}
 
 \item{nBoot}{nBoot}
-
-\item{seed}{set to get same result
-Must be less than the number of columns of normCounts.}
 }
 \value{
 an adjacent matrix
@@ -33,7 +31,7 @@ This function carries out the gene regulatory network inference using parmigene
 }
 \examples{
 dataDEGs <- DEGsmatrix
-dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
+dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100],
 DEGsmatrix = dataDEGs,
 DiffGenes = TRUE,
 normCounts = dataFilt)

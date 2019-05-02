@@ -4,7 +4,7 @@
 \alias{PRA}
 \title{Pattern Recognition Analysis (PRA)}
 \usage{
-PRA(dataURA, BPname, thres.role = 0, seed = 12345)
+PRA(dataURA, BPname, thres.role = 0)
 }
 \arguments{
 \item{dataURA}{output URA function}
@@ -12,8 +12,6 @@ PRA(dataURA, BPname, thres.role = 0, seed = 12345)
 \item{BPname}{BPname}
 
 \item{thres.role}{thres.role}
-
-\item{seed}{seed value}
 }
 \value{
 returns list of TSGs and OCGs when biological processes are provided, otherwise a randomForest based classifier that can be used on new data
