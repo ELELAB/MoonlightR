@@ -548,23 +548,6 @@ img <- readPNG("DEGs_volcano.png")
 grid.raster(img)
 ```
 
-## `LPA`: Literature Phenotype Analysis
-The user can perform a literature phenotype analysis using the function `LPA`, for example for the biological process 'apoptosis'. 
-
-```{r, eval = TRUE, echo = TRUE, results='hide'}
-data(DEGsmatrix)
-
-BPselected <- "apoptosis"
-
-BPannotations <- DiseaseList[[match(BPselected,names(DiseaseList))]]$ID
-dataLPA <- LPA(dataDEGs = DEGsmatrix[1:5,],
-               BP =  BPselected,
-               BPlist = BPannotations)
-DiseaseListNew <- dataLPA
-names(DiseaseListNew) <- BPselected
-
-```
-
 
 ## `FEA`: Functional Enrichment Analysis
 The user can perform a functional enrichment analysis using the function `FEAcomplete`. For each DEG in the gene set a z-score is calculated. This score indicates how the genes act in the gene set.
