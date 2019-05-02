@@ -12,21 +12,21 @@
 #' @return an adjacent matrix
 #' @examples
 #' dataDEGs <- DEGsmatrix
-#' dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
+#' dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100],
 #' DEGsmatrix = dataDEGs,
 #' DiffGenes = TRUE,
 #' normCounts = dataFilt)
 #' dataURA <-URA(dataGRN = dataGRN,
-#' DEGsmatrix = dataDEGs, 
+#' DEGsmatrix = dataDEGs,
 #' BPname = c("apoptosis",
 #' "proliferation of cells"))
 URA <- function(dataGRN, DEGsmatrix, BPname, nCores = 1){
 doParallel::registerDoParallel(cores = nCores)
- 
+
   #globalVariables('j')
-  
+
   DiseaseList <- get("DiseaseList")
-  
+
     if(is.null(BPname)){
         BPname <- names(DiseaseList)
     }
@@ -37,7 +37,7 @@ doParallel::registerDoParallel(cores = nCores)
     pb <- txtProgressBar(min = 0, max = length(tRlist), style = 3)
 
     j <- NULL
-    
+
     TableDiseases <- foreach(j = 1:length(tRlist), .combine = "rbind", .packages="foreach") %dopar% {
       #setTxtProgressBar(pb, j)
         currentTF <- as.character(tRlist[j] )
@@ -46,7 +46,7 @@ doParallel::registerDoParallel(cores = nCores)
         DEGsregulon <- intersect(rownames(DEGsmatrix), currentTF_regulon)
         if(length(DEGsregulon) > 2){
         tabFEA <- FEA(BPname = BPname, DEGsmatrix = DEGsmatrix[DEGsregulon,])
-        return(tabFEA$Activation.z.score)
+        return(tabFEA$Moonlight.Z.score)
         }else{
             return(rep(0, length(BPname)))
         }

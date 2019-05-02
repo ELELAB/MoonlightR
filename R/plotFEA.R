@@ -10,8 +10,10 @@
 #' @param angle angle
 #' @param xleg xleg
 #' @param yleg yleg
+#' @param titleMain title of the plot
 #' @param minY minY
 #' @param maxY maxY
+#' @param mycols colors to use for the plot
 #' @importFrom graphics barplot
 #' @importFrom graphics legend
 #' @importFrom graphics par
