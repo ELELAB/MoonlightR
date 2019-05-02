@@ -27,9 +27,13 @@ plotFEA(dataFEA, topBP = 10, additionalFilename = NULL, height, width,
 
 \item{yleg}{yleg}
 
+\item{titleMain}{title of the plot}
+
 \item{minY}{minY}
 
 \item{maxY}{maxY}
+
+\item{mycols}{colors to use for the plot}
 }
 \value{
 no return value, FEA result is plotted

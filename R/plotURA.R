@@ -15,8 +15,8 @@
 #' BPname = c("apoptosis","proliferation of cells"),
 #' thres.role = 0)
 #' TSGs_genes <- names(dataDual$TSG)
-#' OCGs_genes <- names(dataDual$OCG
-#' plotURA(dataURA = dataURA[c(TSGs_genes, OCGs_genes)),],additionalFilename = "_example")
+#' OCGs_genes <- names(dataDual$OCG)
+#' plotURA(dataURA = dataURA[c(TSGs_genes, OCGs_genes),],additionalFilename = "_example")
 plotURA<- function(dataURA, additionalFilename = "URAplot"){
     if(nrow(dataURA)>70){
         cexRow <- 0.1 + 1/(2*nrow(dataURA))*(log10(nrow(dataURA)))

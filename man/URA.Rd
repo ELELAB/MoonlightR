@@ -23,12 +23,12 @@ This function carries out the upstream regulator analysis
 }
 \examples{
 dataDEGs <- DEGsmatrix
-dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
+dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100],
 DEGsmatrix = dataDEGs,
 DiffGenes = TRUE,
 normCounts = dataFilt)
 dataURA <-URA(dataGRN = dataGRN,
-DEGsmatrix = dataDEGs, 
+DEGsmatrix = dataDEGs,
 BPname = c("apoptosis",
 "proliferation of cells"))
 }

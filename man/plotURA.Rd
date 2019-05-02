@@ -22,5 +22,7 @@ data(dataURA)
 dataDual <- PRA(dataURA = dataURA,
 BPname = c("apoptosis","proliferation of cells"),
 thres.role = 0)
-plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),],additionalFilename = "_example")
+TSGs_genes <- names(dataDual$TSG)
+OCGs_genes <- names(dataDual$OCG)
+plotURA(dataURA = dataURA[c(TSGs_genes, OCGs_genes),],additionalFilename = "_example")
 }
