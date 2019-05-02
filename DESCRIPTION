@@ -9,7 +9,7 @@ Author: Antonio Colaprico*, Catharina Olsen*, Claudia Cava, Thilde
         Papaleo, Gianluca Bontempi
 Maintainer: Antonio Colaprico <axc1833@med.miami.edu>, Catharina
         Olsen <colsen@ulb.ac.be>
-Depends: R (>= 3.3), doParallel, foreach
+Depends: R (>= 3.5), doParallel, foreach
 Imports: parmigene, randomForest, SummarizedExperiment, gplots,
         circlize, RColorBrewer, HiveR, clusterProfiler, DOSE, Biobase,
         limma, grDevices, graphics, TCGAbiolinks, GEOquery, stats,

@@ -1,11 +1,10 @@
-#' @title Generate network 
+#' @title Generate network
 #' @description This function carries out the gene regulatory network inference using parmigene
 #' @param TFs a vector of genes.
 #' @param DEGsmatrix DEGsmatrix output from DEA such as dataDEGs
 #' @param DiffGenes if TRUE consider only diff.expr genes in GRN
 #' @param normCounts is a matrix of gene expression with genes in rows and samples in columns.
 #' @param kNearest the number of nearest neighbors to consider to estimate the mutual information.
-#' @param seed set to get same result
 #' Must be less than the number of columns of normCounts.
 #' @param nGenesPerm nGenesPerm
 #' @param nBoot nBoot
@@ -14,12 +13,11 @@
 #' @return an adjacent matrix
 #' @examples
 #' dataDEGs <- DEGsmatrix
-#' dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100], 
+#' dataGRN <- GRN(TFs = rownames(dataDEGs)[1:100],
 #' DEGsmatrix = dataDEGs,
 #' DiffGenes = TRUE,
 #' normCounts = dataFilt)
-GRN <- function(TFs, DEGsmatrix, DiffGenes = FALSE, normCounts, kNearest = 3, nGenesPerm = 10, nBoot = 10, seed=12345) {
-    set.seed(seed)
+GRN <- function(TFs, DEGsmatrix, DiffGenes = FALSE, normCounts, kNearest = 3, nGenesPerm = 10, nBoot = 10) {
     normCountsA <- normCounts
     normCountsB <- normCounts
 
@@ -31,7 +29,7 @@ GRN <- function(TFs, DEGsmatrix, DiffGenes = FALSE, normCounts, kNearest = 3, nG
     }
 
 
-    MRcandidates <- intersect(rownames(normCountsA),TFs) 
+    MRcandidates <- intersect(rownames(normCountsA),TFs)
 
 
     # Mutual information between TF and genes
@@ -48,7 +46,7 @@ GRN <- function(TFs, DEGsmatrix, DiffGenes = FALSE, normCounts, kNearest = 3, nG
     # )
 
 
-    # threshold with bootstrap   
+    # threshold with bootstrap
     tfListCancer <- TFs
     tfListCancer <- intersect(tfListCancer,rownames(normCountsA))
 
@@ -74,5 +72,5 @@ GRN <- function(TFs, DEGsmatrix, DiffGenes = FALSE, normCounts, kNearest = 3, nG
 
 
     return(list(miTFGenes = miTFGenes, maxmi = maxmi))
-  
+
 }
