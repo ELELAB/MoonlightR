@@ -514,7 +514,7 @@ cancerPLT <-GEO_TCGAtab$Platform[i]
 fileCancerGEO <- paste0(cancer,"_GEO_",cancerGEO,"_",cancerPLT, ".RData")
 
 dataFilt <- getDataGEO(TCGAtumor = cancer)
-
+xContrast <- c("G1-G0")
 GEOdegs <- DPA(dataConsortium = "GEO",
                gset = dataFilt ,
                colDescription = "title",
