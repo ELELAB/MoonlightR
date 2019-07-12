@@ -415,8 +415,9 @@ The proposed pipeline consists of following eight steps:
 To install use the code below.
 
 ```{r, eval = FALSE}
-source("https://bioconductor.org/biocLite.R")
-biocLite("MoonlightR")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("MoonlightR")
 ```
 
 ## Citation
