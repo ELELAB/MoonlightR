@@ -12,10 +12,10 @@
 #' @param gset gset
 #' @param gsetFile gsetFile
 #' @importFrom TCGAbiolinks TCGAanalyze_DEA
-#' @importFrom TCGAbiolinks TCGAanalyze_DMR
+#' @importFrom TCGAbiolinks TCGAanalyze_DMC
 #' @importFrom TCGAbiolinks TCGAquery_SampleTypes
 #' @import SummarizedExperiment
-#' @import Biobase 
+#' @import Biobase
 #' @importFrom stats quantile
 #' @importFrom stats model.matrix
 #' @importFrom limma lmFit
@@ -25,13 +25,13 @@
 #' @importFrom limma topTable
 #' @return result matrix from differential phenotype analysis
 #' @export
-#' @examples 
+#' @examples
 #' dataDEGs <- DPA(dataFilt = dataFilt, dataType = "Gene expression")
 
-DPA <- function(dataType, dataFilt, dataConsortium="TCGA", fdr.cut = 0.01, logFC.cut = 1, 
-                diffmean.cut = 0.25, samplesType, colDescription, gset, 
+DPA <- function(dataType, dataFilt, dataConsortium="TCGA", fdr.cut = 0.01, logFC.cut = 1,
+                diffmean.cut = 0.25, samplesType, colDescription, gset,
                 gsetFile = "gsetFile.RData"){
-  
+
     if (dataConsortium == "GEO"){
         tabGset <- as.data.frame(subset(pData(gset), select=c("geo_accession",colDescription,"type")))
         colnames(tabGset) <- c("SampleID", "Disease","Group")
@@ -45,7 +45,7 @@ DPA <- function(dataType, dataFilt, dataConsortium="TCGA", fdr.cut = 0.01, logFC
 
         sml <- c()
         for (i in 1:nchar(gsms)) { sml[i] <- substr(gsms,i,i) }
-        
+
         sel <- which(sml != "X")
         sml <- sml[sel]
         gset <- gset[ ,sel]
@@ -58,7 +58,7 @@ DPA <- function(dataType, dataFilt, dataConsortium="TCGA", fdr.cut = 0.01, logFC
         if (LogC) { ex[which(ex <= 0)] <- NaN
         exprs(gset) <- log2(ex) }
 
-        sml <- paste("G", sml, sep="")    
+        sml <- paste("G", sml, sep="")
         fl <- as.factor(sml)
         gset$description <- fl
         design <- model.matrix(~ description + 0, gset)
@@ -78,9 +78,9 @@ DPA <- function(dataType, dataFilt, dataConsortium="TCGA", fdr.cut = 0.01, logFC
         Cond2num <- sum(tabGset$Group == 1)
 
         message("----------------------- DEA -------------------------------")
-        message(message1 <- paste("there are Cond1 type", samplesType[1], 
+        message(message1 <- paste("there are Cond1 type", samplesType[1],
                                 "in ", Cond1num, "samples"))
-        message(message2 <- paste("there are Cond2 type", samplesType[2], 
+        message(message2 <- paste("there are Cond2 type", samplesType[2],
                                 "in ", Cond2num, "samples"))
         message(message3 <- paste("there are ", length( unique(tT$Gene.symbol)), "features as miRNA or genes "))
 
@@ -97,8 +97,8 @@ DPA <- function(dataType, dataFilt, dataConsortium="TCGA", fdr.cut = 0.01, logFC
         rownames(tT_filt_FC) <- tT_filt_FC$Gene.symbol
 
         dataDEGs<- tT_filt_FC
-        return(dataDEGs)  
-  
+        return(dataDEGs)
+
     }else if(dataConsortium == "TCGA"){
         if(dataType == "Gene expression"){
 
@@ -115,20 +115,20 @@ DPA <- function(dataType, dataFilt, dataConsortium="TCGA", fdr.cut = 0.01, logFC
             return(dataDEGs)
         }else if(dataType == "Methylation"){
             dataFilt <- subset(dataFilt,subset = (rowSums(is.na(assay(dataFilt))) == 0))
-        
-            system.time (cancer.met <- TCGAanalyze_DMR(dataFilt, groupCol = "shortLetterCode",
+
+            system.time (cancer.met <- TCGAanalyze_DMC(dataFilt, groupCol = "shortLetterCode",
                                                  group1 = "TP",
                                                  group2= "NT",
                                                  p.cut = fdr.cut,
                                                  diffmean.cut = 0.25,
                                                  legend = "State",
                                                  plot.filename = "test.png"))
-      
+
             values(dataDEGs)$status.NT.TP
             sig.met <- dataDEGs[values(dataDEGs)$status.NT.TP %in% c("Hypermethylated","Hypomethylated"),]
-        
+
             return(cancer.met)
         }
     }
-  
+
 }
