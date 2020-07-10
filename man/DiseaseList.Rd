@@ -4,7 +4,9 @@
 \name{DiseaseList}
 \alias{DiseaseList}
 \title{Information on 101 biological processes}
-\format{A list of 101 matrices}
+\format{
+A list of 101 matrices
+}
 \usage{
 data(DiseaseList)
 }

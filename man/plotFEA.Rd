@@ -4,9 +4,21 @@
 \alias{plotFEA}
 \title{plotFEA}
 \usage{
-plotFEA(dataFEA, topBP = 10, additionalFilename = NULL, height, width,
-  offsetValue = 5, angle = 90, xleg = 35, yleg = 5, titleMain,
-  minY = -5, maxY = 10, mycols = c("#8DD3C7", "#FFFFB3", "#BEBADA"))
+plotFEA(
+  dataFEA,
+  topBP = 10,
+  additionalFilename = NULL,
+  height,
+  width,
+  offsetValue = 5,
+  angle = 90,
+  xleg = 35,
+  yleg = 5,
+  titleMain,
+  minY = -5,
+  maxY = 10,
+  mycols = c("#8DD3C7", "#FFFFB3", "#BEBADA")
+)
 }
 \arguments{
 \item{dataFEA}{dataFEA}

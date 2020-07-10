@@ -3,8 +3,4 @@
 \docType{package}
 \name{MoonlightR}
 \alias{MoonlightR}
-\alias{MoonlightR-package}
 \title{MoonlightR}
-\description{
-MoonlightR
-}

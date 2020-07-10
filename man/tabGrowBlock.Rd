@@ -4,7 +4,9 @@
 \name{tabGrowBlock}
 \alias{tabGrowBlock}
 \title{Information growing/blocking characteristics for 101 selected biological processes}
-\format{A 101x3 matrix}
+\format{
+A 101x3 matrix
+}
 \usage{
 data(tabGrowBlock)
 }

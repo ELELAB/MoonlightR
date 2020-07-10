@@ -4,8 +4,15 @@
 \alias{GRN}
 \title{Generate network}
 \usage{
-GRN(TFs, DEGsmatrix, DiffGenes = FALSE, normCounts, kNearest = 3,
-  nGenesPerm = 10, nBoot = 10)
+GRN(
+  TFs,
+  DEGsmatrix,
+  DiffGenes = FALSE,
+  normCounts,
+  kNearest = 3,
+  nGenesPerm = 10,
+  nBoot = 10
+)
 }
 \arguments{
 \item{TFs}{a vector of genes.}

@@ -4,7 +4,9 @@
 \name{EAGenes}
 \alias{EAGenes}
 \title{Information about genes}
-\format{A 20038x5 matrix}
+\format{
+A 20038x5 matrix
+}
 \usage{
 data(EAGenes)
 }

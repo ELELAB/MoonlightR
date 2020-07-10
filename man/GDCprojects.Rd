@@ -4,7 +4,9 @@
 \name{GDCprojects}
 \alias{GDCprojects}
 \title{Information on GDC projects}
-\format{A character vector of 39 elements}
+\format{
+A character vector of 39 elements
+}
 \usage{
 data(GDCprojects)
 }

@@ -4,7 +4,9 @@
 \name{dataFilt}
 \alias{dataFilt}
 \title{Gene Expression (Rnaseqv2) data from TCGA LUAD}
-\format{A 13742x20 matrix}
+\format{
+A 13742x20 matrix
+}
 \usage{
 data(dataFilt)
 }

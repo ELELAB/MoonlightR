@@ -4,9 +4,17 @@
 \alias{getDataTCGA}
 \title{getDataTCGA}
 \usage{
-getDataTCGA(cancerType, dataType, directory, cor.cut = 0.6,
-  qnt.cut = 0.25, nSample, stage = "ALL", subtype = 0,
-  samples = NULL)
+getDataTCGA(
+  cancerType,
+  dataType,
+  directory,
+  cor.cut = 0.6,
+  qnt.cut = 0.25,
+  nSample,
+  stage = "ALL",
+  subtype = 0,
+  samples = NULL
+)
 }
 \arguments{
 \item{cancerType}{select cancer type for which analysis should be run. panCancer

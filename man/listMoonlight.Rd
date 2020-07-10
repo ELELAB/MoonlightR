@@ -4,7 +4,9 @@
 \name{listMoonlight}
 \alias{listMoonlight}
 \title{Output list from Moonlight}
-\format{A Large list with 5 elements}
+\format{
+A Large list with 5 elements
+}
 \usage{
 data(listMoonlight)
 }

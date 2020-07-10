@@ -4,8 +4,7 @@
 \alias{getDataGEO}
 \title{getDataGEO}
 \usage{
-getDataGEO(GEOobject = "GSE39004", platform = "GPL6244",
-  TCGAtumor = NULL)
+getDataGEO(GEOobject = "GSE39004", platform = "GPL6244", TCGAtumor = NULL)
 }
 \arguments{
 \item{GEOobject}{GEOobject}

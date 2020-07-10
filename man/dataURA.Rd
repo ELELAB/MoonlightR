@@ -4,7 +4,9 @@
 \name{dataURA}
 \alias{dataURA}
 \title{Output example from function Upstram Regulator Analysis}
-\format{A data frame with 100 rows and 2 variables}
+\format{
+A data frame with 100 rows and 2 variables
+}
 \usage{
 data(dataURA)
 }

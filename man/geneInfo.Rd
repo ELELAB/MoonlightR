@@ -4,7 +4,9 @@
 \name{geneInfo}
 \alias{geneInfo}
 \title{Information about genes for normalization}
-\format{A data frame with 20531 rows and 3 variables}
+\format{
+A data frame with 20531 rows and 3 variables
+}
 \usage{
 data(geneInfo)
 }

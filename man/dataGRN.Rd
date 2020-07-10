@@ -4,7 +4,9 @@
 \name{dataGRN}
 \alias{dataGRN}
 \title{GRN gene regulatory network output}
-\format{A large list of 2 elements}
+\format{
+A large list of 2 elements
+}
 \usage{
 data(dataGRN)
 }

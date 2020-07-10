@@ -4,7 +4,9 @@
 \name{knownDriverGenes}
 \alias{knownDriverGenes}
 \title{Information on known cancer driver gene from COSMIC}
-\format{A 101x3 matrix}
+\format{
+A 101x3 matrix
+}
 \usage{
 data(knownDriverGenes)
 }

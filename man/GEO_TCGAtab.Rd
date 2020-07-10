@@ -5,7 +5,9 @@
 \alias{GEO_TCGAtab}
 \title{Information on GEO data (and overlap with TCGA)#'
 A data set containing the following data:}
-\format{A 101x3 matrix}
+\format{
+A 101x3 matrix
+}
 \usage{
 data(GEO_TCGAtab)
 }

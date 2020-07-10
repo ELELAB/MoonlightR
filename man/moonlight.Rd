@@ -4,12 +4,28 @@
 \alias{moonlight}
 \title{moonlight pipeline}
 \usage{
-moonlight(cancerType = "panCancer", dataType = "Gene expression",
-  directory = "GDCdata", BPname = NULL, cor.cut = 0.6,
-  qnt.cut = 0.25, Genelist = NULL, fdr.cut = 0.01, logFC.cut = 1,
-  corThreshold = 0.6, kNearest = 3, nGenesPerm = 10,
-  DiffGenes = FALSE, nBoot = 100, nTF = NULL, nSample = NULL,
-  thres.role = 0, stage = NULL, subtype = 0, samples = NULL)
+moonlight(
+  cancerType = "panCancer",
+  dataType = "Gene expression",
+  directory = "GDCdata",
+  BPname = NULL,
+  cor.cut = 0.6,
+  qnt.cut = 0.25,
+  Genelist = NULL,
+  fdr.cut = 0.01,
+  logFC.cut = 1,
+  corThreshold = 0.6,
+  kNearest = 3,
+  nGenesPerm = 10,
+  DiffGenes = FALSE,
+  nBoot = 100,
+  nTF = NULL,
+  nSample = NULL,
+  thres.role = 0,
+  stage = NULL,
+  subtype = 0,
+  samples = NULL
+)
 }
 \arguments{
 \item{cancerType}{select cancer type for which analysis should be run. panCancer

@@ -4,7 +4,9 @@
 \name{DEGsmatrix}
 \alias{DEGsmatrix}
 \title{DEG Differentially expressed genes}
-\format{A 3502x5 matrix}
+\format{
+A 3502x5 matrix
+}
 \usage{
 data(DEGsmatrix)
 }
