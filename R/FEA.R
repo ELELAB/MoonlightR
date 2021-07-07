@@ -120,7 +120,7 @@ FEA <- function (BPname = NULL, DEGsmatrix){
                                  "FunctionNg",
                                  "Molecules"))
 
-    TableDiseasesNew <- TableDiseasesNew[order(abs(TableDiseasesNew$Moonlight.Z.score),decreasing = TRUE),]
+    #TableDiseasesNew <- TableDiseasesNew[order(abs(TableDiseasesNew$Moonlight.Z.score),decreasing = TRUE),]
 
     return(TableDiseasesNew)
 }
