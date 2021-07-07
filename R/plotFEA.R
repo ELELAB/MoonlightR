@@ -37,12 +37,13 @@ plotFEA <- function (dataFEA, topBP = 10, additionalFilename = NULL, height,
                              decreasing = TRUE), ]
     tmp <- dataFEA[1:topBP, ]
     tmp <- as.data.frame(tmp)
-    tmp$p.Value <- as.numeric(tmp$p.Value)
+    tmp$FDR <- as.numeric(tmp$FDR)
     tmp$Moonlight.Z.score <- as.numeric(tmp$Moonlight.Z.score)
     tmp$commonNg <- as.numeric(tmp$commonNg)
-    tmp$p.Value <- -log2(tmp$p.Value)/10
+    tmp$FDR <- -log2(tmp$FDR)/10
+    tmp <- tmp[order(tmp[,4], decreasing = TRUE),]
     toPlot <- matrix(0, nrow = 3, ncol = nrow(tmp))
-    toPlot[1, ] <- tmp$p.Value
+    toPlot[1, ] <- tmp$FDR
     toPlot <- toPlot[, order(toPlot[1, ], decreasing = TRUE)]
     toPlot[2, as.numeric(tmp$Moonlight.Z.score) > 0] <- as.numeric(tmp$Moonlight.Z.score[as.numeric(tmp$Moonlight.Z.score) >
                                                                                              0])
@@ -50,10 +51,10 @@ plotFEA <- function (dataFEA, topBP = 10, additionalFilename = NULL, height,
                                                                                              0])
     toPlot[1, which(toPlot[1, ] > 10)] <- 10
     toPlot <- as.matrix(toPlot)
-    xAxis <- barplot(toPlot, beside = TRUE, col = mycols, ylab = "-logFDR/10 and Moonlight z-score",
+    xAxis <- barplot(toPlot, beside = TRUE, col = mycols, ylab = "-log2FDR/10 and Moonlight z-score",
                      names = NULL, main = paste0("FEA - Enriched BioFunctions", titleMain,
                                                  sep = " "), ylim = c(minY, maxY))
-    legend("topright", bty = "n", xleg, yleg, legend = c("-logFDR/10",
+    legend("topright", bty = "n", xleg, yleg, legend = c("-log2FDR/10",
                                                          "Moonlight Z-score Increased", "Moonlight Z-score Decreased"),
            fill = mycols, cex = 0.5)
     text(xAxis[2, ], par("usr")[3] + offsetValue, srt = angle,
