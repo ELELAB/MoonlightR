@@ -1,37 +1,32 @@
 citHeader("To cite MoonlightR in publications use:")
 
 citEntry(entry = "article",
-         title        = "..",
-         author       = personList(as.person("Antonio Colaprico"),
-                                   as.person("..."),
-                                   as.person("..."),
-                                   as.person("..."),
-								   as.person("..."),
-								   as.person("..."),
-								   as.person("..."),
-                                   as.person("..."),
-                                   as.person("..."),
-                                   as.person("...")
+         title = "Interpreting pathways to discover cancer driver genes with Moonlight",
+         author = personList(as.person("Antonio Colaprico"),
+                             as.person("Catharina Olsen"),
+                             as.person("Matthew H. Bailey"),
+                             as.person("Gabriel J. Odom"),
+			     as.person("Thilde Terkelsen"),
+			     as.person("Tiago C. Silva"),
+			     as.person("André V. Olsen"),
+                             as.person("Laura Cantini"),
+                             as.person("Andrei Zinovyev"),
+                             as.person("Emmanuel Barillot"),
+			     as.person("Houtan Noushmehr"),
+			     as.person("Gloria Bertoli"),
+			     as.person("Isabella Castiglioni"),
+			     as.person("Claudia Cava"),
+			     as.person("Gianluca Bontempi"),
+			     as.person("Xi Steven Chen"),
+			     as.person("Elena Papaleo")
          ),
-         journal = "manuscript in preparation",
-         year         = "2016",
-         textVersion  =
-             paste("Antonio Colaprico, ...,",
-                   "..., ..., ...,..., ..., ...,",
-                   "... (2016).",
-                   "Moonlight: An R/Bioconductor package for ....")
+         journal = "Nature Communications",
+         year = "2020",
+	 volume = "11(69)", 
+         textVersion =
+             paste("Colaprico, A., Olsen, C., Bailey, M.H. et al.",
+                   "Interpreting pathways to discover cancer driver genes with Moonlight.",
+                   "Nature Communications, 2020 January 3; 11(69).",
+                   "DOI: 10.1038/s41467-019-13803-0")
 )
 
-citEntry(entry = "article",
-         title        = "...................",
-         author       = personList(as.person("Antonio Colaprico"),
-                                   as.person("..."),
-                                   as.person("...")
-         ),
-         journal = "...",
-         year         = "...",
-		 	volume = 9,
-	number = 62,
-         textVersion  =
-             paste("....................")
-)
