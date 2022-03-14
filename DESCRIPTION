@@ -1,7 +1,7 @@
 Package: MoonlightR
 Type: Package
 Title: Identify oncogenes and tumor suppressor genes from omics data
-Version: 1.21.1
+Version: 1.21.2
 Date: 07-08-2020
 Author: Antonio Colaprico*, Catharina Olsen*, Claudia Cava, Thilde
         Terkelsen, Laura Cantini, Andre Olsen, Gloria Bertoli, Andrei
@@ -51,4 +51,3 @@ URL: https://github.com/ibsquare/MoonlightR
 BugReports: https://github.com/ibsquare/MoonlightR/issues
 RoxygenNote: 6.1.1
 Encoding: UTF-8
-PackageStatus: Deprecated
