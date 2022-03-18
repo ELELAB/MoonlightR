@@ -3,38 +3,53 @@ Type: Package
 Title: Identify oncogenes and tumor suppressor genes from omics data
 Version: 1.15.2
 Date: 07-08-2020
-Author: Antonio Colaprico*, Catharina Olsen*, Claudia Cava, Thilde
-        Terkelsen, Laura Cantini, Andre Olsen, Gloria Bertoli, Andrei
-        Zinovyev, Emmanuel Barillot, Isabella Castiglioni, Elena
-        Papaleo, Gianluca Bontempi
+Author: Antonio Colaprico*, Catharina Olsen*, Matthew H. Bailey, Gabriel J. Odom,
+        Thilde Terkelsen, Tiago C. Silva, André V. Olsen, Laura Cantini, 
+        Andrei Zinovyev, Emmanuel Barillot, Houtan Noushmehr, Gloria Bertoli,
+        Isabella Castiglioni, Claudia Cava, Gianluca Bontempi, Xi Steven Chen,
+        Elena Papaleo
 Maintainer: Matteo Tiberti <tiberti@cancer.dk>
 Authors@R:
   c(person("Antonio", "Colaprico",
            role="aut"),
     person("Catharina", "Olsen",
            role="aut"),
-    person("Claudia","Cava",
+    person("Matthew H.", "Bailey",
+           role="aut"),
+    person("Gabriel J.", "Odom",
            role="aut"),
     person("Thilde", "Terkelsen",
            role="aut"),
+    person("Mona", "Nourbakhsh",
+           role="aut"),
+    person("Astrid", "Saksager",
+           role="aut"),
+    person("Tiago C.", "Silva",
+           role="aut"),
+    person("André V.", "Olsen",
+           role="aut"),
     person("Laura", "Cantini",
-           role="aut"),
-    person("Andre", "Olsen",
-           role="aut"),
-    person("Gloria", "Bertoli",
            role="aut"),
     person("Andrei", "Zinovyev",
            role="aut"),
     person("Emmanuel", "Barillot",
            role="aut"),
+    person("Houtan", "Noushmehr",
+           role="aut"),
+    person("Gloria", "Bertoli",
+           role="aut"),
     person("Isabella", "Castiglioni",
            role="aut"),
-    person("Elena", "Papaleo",
+    person("Claudia","Cava",
            role="aut"),
     person("Gianluca", "Bontempi",
            role="aut"),
+    person("Xi Steven", "Chen",
+           role="aut"),
+    person("Elena", "Papaleo",
+           role="aut"),
     person("Matteo", "Tiberti",
-           role="cre",
+           role=c("cre", aut),
            email="tiberti@cancer.dk",
            ))
 Depends: R (>= 3.5), doParallel, foreach
