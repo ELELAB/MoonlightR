@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 ^\.git$
 ^\.travis\.yml$
+^\.Dockerfile.swo$
+^Dockerfile$
