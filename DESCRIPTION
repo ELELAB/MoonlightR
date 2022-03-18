@@ -49,7 +49,7 @@ Authors@R:
     person("Elena", "Papaleo",
            role="aut"),
     person("Matteo", "Tiberti",
-           role=c("cre", aut),
+           role=c("cre", "aut"),
            email="tiberti@cancer.dk",
            ))
 Depends: R (>= 3.5), doParallel, foreach
