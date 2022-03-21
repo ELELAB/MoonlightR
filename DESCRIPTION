@@ -1,14 +1,51 @@
 Package: MoonlightR
 Type: Package
 Title: Identify oncogenes and tumor suppressor genes from omics data
-Version: 1.15.1
+Version: 1.15.2
 Date: 07-08-2020
-Author: Antonio Colaprico*, Catharina Olsen*, Claudia Cava, Thilde
-        Terkelsen, Laura Cantini, Andre Olsen, Gloria Bertoli, Andrei
-        Zinovyev, Emmanuel Barillot, Isabella Castiglioni, Elena
-        Papaleo, Gianluca Bontempi
-Maintainer: Antonio Colaprico <axc1833@med.miami.edu>, Catharina
-        Olsen <colsen@ulb.ac.be>
+Authors@R:
+  c(person("Antonio", "Colaprico",
+           role="aut"),
+    person("Catharina", "Olsen",
+           role="aut"),
+    person("Matthew H.", "Bailey",
+           role="aut"),
+    person("Gabriel J.", "Odom",
+           role="aut"),
+    person("Thilde", "Terkelsen",
+           role="aut"),
+    person("Mona", "Nourbakhsh",
+           role="aut"),
+    person("Astrid", "Saksager",
+           role="aut"),
+    person("Tiago C.", "Silva",
+           role="aut"),
+    person("André V.", "Olsen",
+           role="aut"),
+    person("Laura", "Cantini",
+           role="aut"),
+    person("Andrei", "Zinovyev",
+           role="aut"),
+    person("Emmanuel", "Barillot",
+           role="aut"),
+    person("Houtan", "Noushmehr",
+           role="aut"),
+    person("Gloria", "Bertoli",
+           role="aut"),
+    person("Isabella", "Castiglioni",
+           role="aut"),
+    person("Claudia","Cava",
+           role="aut"),
+    person("Gianluca", "Bontempi",
+           role="aut"),
+    person("Xi Steven", "Chen",
+           role="aut"),
+    person("Elena", "Papaleo",
+           role="aut"),
+    person("Matteo", "Tiberti",
+           role=c("cre", "aut"),
+           email="tiberti@cancer.dk",
+           ))
 Depends: R (>= 3.5), doParallel, foreach
 Imports: parmigene, randomForest, SummarizedExperiment, gplots,
         circlize, RColorBrewer, HiveR, clusterProfiler, DOSE, Biobase,
@@ -47,7 +84,7 @@ Suggests: BiocStyle, knitr, rmarkdown, testthat, devtools, roxygen2,
         png
 VignetteBuilder: knitr
 LazyData: true
-URL: https://github.com/ibsquare/MoonlightR
-BugReports: https://github.com/ibsquare/MoonlightR/issues
+URL: https://github.com/ELELAB/MoonlightR
+BugReports: https://github.com/ELELAB/MoonlightR/issues
 RoxygenNote: 7.1.0
 Encoding: UTF-8
