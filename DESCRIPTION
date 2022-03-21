@@ -4,10 +4,10 @@ Title: Identify oncogenes and tumor suppressor genes from omics data
 Version: 1.15.2
 Date: 07-08-2020
 Author: Antonio Colaprico*, Catharina Olsen*, Matthew H. Bailey, Gabriel J. Odom,
-        Thilde Terkelsen, Tiago C. Silva, André V. Olsen, Laura Cantini, 
-        Andrei Zinovyev, Emmanuel Barillot, Houtan Noushmehr, Gloria Bertoli,
-        Isabella Castiglioni, Claudia Cava, Gianluca Bontempi, Xi Steven Chen,
-        Elena Papaleo
+        Thilde Terkelsen, Mona Nourbakhsh, Astrid Saksager, Tiago C. Silva,
+        André V. Olsen, Laura Cantini, Andrei Zinovyev, Emmanuel Barillot,
+        Houtan Noushmehr, Gloria Bertoli, Isabella Castiglioni, Claudia Cava,
+        Gianluca Bontempi, Xi Steven Chen, Elena Papaleo
 Maintainer: Matteo Tiberti <tiberti@cancer.dk>
 Authors@R:
   c(person("Antonio", "Colaprico",
