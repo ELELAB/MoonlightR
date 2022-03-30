@@ -4,3 +4,6 @@
 \name{MoonlightR}
 \alias{MoonlightR}
 \title{MoonlightR}
+\description{
+MoonlightR is an R package designed for identification of cancer driver genes
+}

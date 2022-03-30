@@ -666,7 +666,7 @@ The user can plot the result of the upstream regulatory analysis using the funct
 
 ```{r, eval = TRUE,message=FALSE,warning=FALSE, results='hide'}
  plotURA(dataURA = dataURA[c(names(dataDual$TSG), names(dataDual$OCG)),, drop = FALSE], additionalFilename = "_exampleVignette")
- ```
+```
 
 The figure resulted from the code above is shown below:
 ```{r, fig.width=6, fig.height=4, echo = FALSE, fig.align="center",hide=TRUE, message=FALSE,warning=FALSE}

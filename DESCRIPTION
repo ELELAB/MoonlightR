@@ -86,5 +86,5 @@ VignetteBuilder: knitr
 LazyData: true
 URL: https://github.com/ELELAB/MoonlightR
 BugReports: https://github.com/ELELAB/MoonlightR/issues
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
 Encoding: UTF-8
