@@ -1,7 +1,7 @@
 Package: MoonlightR
 Type: Package
 Title: Identify oncogenes and tumor suppressor genes from omics data
-Version: 1.21.3
+Version: 1.21.4
 Date: 07-08-2020
 Authors@R:
   c(person("Antonio", "Colaprico",
@@ -86,5 +86,5 @@ VignetteBuilder: knitr
 LazyData: true
 URL: https://github.com/ELELAB/MoonlightR
 BugReports: https://github.com/ELELAB/MoonlightR/issues
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
 Encoding: UTF-8
