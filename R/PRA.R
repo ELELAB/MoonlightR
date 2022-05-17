@@ -32,7 +32,15 @@ PRA <- function(dataURA, BPname, thres.role = 0){
             "labels"=as.factor(c(rep(1,length(common.genes.tsg)),rep(0,length(common.genes.ocg)))))
 
         fit.rf <- randomForest((labels)~.,data=dataTrain, importance=TRUE)
-        return(fit.rf)
+	common_genes_tsg_ocg <- names(fit.rf$y)
+   	match_common_genes <- match(common_genes_tsg_ocg, rownames(dataURA))
+    	dataURA_test <- dataURA[-match_common_genes,]
+    	colnames(dataURA_test) <- gsub(" ", ".", colnames(dataURA_test))
+    	predict_genes <- predict(fit.rf, dataURA_test)
+    	predicted_tsg <- names(predict_genes[which(predict_genes == 1)])
+    	predicted_ocg <- names(predict_genes[which(predict_genes == 0)])
+    	tsg_ocg_list <- list("TSG" = predicted_tsg, "OCG" = predicted_ocg)
+        return(tsg_ocg_list)
 
     }else{
     	# print("selected processes")
