@@ -371,6 +371,7 @@ knitr::opts_chunk$set(cache=FALSE)
 ```
 
 ```{r, echo = FALSE,hide=TRUE, message=FALSE,warning=FALSE}
+library(dbplyr)
 devtools::load_all(".")
 ```
 
