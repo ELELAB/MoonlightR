@@ -3,9 +3,6 @@ Cancer Structural Biology Group, Danish Cancer Society Research Center, Strandbo
 Cancer Systems Biology, Section of Bioinformatics, Department of Health and Technology, Technical University of Denmark, 2800, Lyngby, Copenhagen
 
 
-#MoonlightR 
-
-
 Repository associated to the publication:
 
 Interpreting pathways to discover cancer driver genes with Moonlight.
