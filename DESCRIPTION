@@ -1,7 +1,7 @@
 Package: MoonlightR
 Type: Package
 Title: Identify oncogenes and tumor suppressor genes from omics data
-Version: 1.26.0
+Version: 1.27.0
 Date: 07-08-2020
 Authors@R:
   c(person("Antonio", "Colaprico",
