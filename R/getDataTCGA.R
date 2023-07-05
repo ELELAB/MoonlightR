@@ -49,9 +49,9 @@ getDataTCGA <- function(cancerType, dataType, directory,
                                "_","IlluminaHiSeq",".rda")
         if(!file.exists(FileNameData)){
             query <- GDCquery(project = CancerProject,
-                              data.category = "Gene expression",
-                              data.type = "Gene expression quantification",
-                              platform = "Illumina HiSeq")
+                              data.category = "Transcriptome Profiling",
+                              data.type = "Gene Expression Quantification",
+                              workflow.type = "STAR - Counts")
 
             samplesDown <- query$results[[1]]$cases
 
@@ -85,16 +85,16 @@ getDataTCGA <- function(cancerType, dataType, directory,
 
             if(is.null(nSample)){
                 queryDown <- GDCquery(project = CancerProject,
-                                  data.category = "Gene expression",
-                                  data.type = "Gene expression quantification",
-                                  platform = "Illumina HiSeq",
+                                  data.category = "Transcriptome Profiling",
+                                  data.type = "Gene Expression Quantification",
+                                  workflow.type = "STAR - Counts",
                                   barcode = c(dataSmTP, dataSmNT))
                                   # barcode = c(sample(dataSmTP,nSample), sample(dataSmNT,nSample)),
             }else{
                 queryDown <- GDCquery(project = CancerProject,
-                                  data.category = "Gene expression",
-                                  data.type = "Gene expression quantification",
-                                  platform = "Illumina HiSeq",
+                                  data.category = "Transcriptome Profiling",
+                                  data.type = "Gene Expression Quantification",
+                                  workflow.type = "STAR - Counts",
                                   # barcode = c(dataSmTP, dataSmNT),
                                   barcode = c(sample(dataSmTP,nSample), sample(dataSmNT,nSample)))
             }
@@ -112,11 +112,10 @@ getDataTCGA <- function(cancerType, dataType, directory,
         }
 
         dataPrep <- TCGAanalyze_Preprocessing(object = RSEobject,
-                                              cor.cut = cor.cut,
-                                              datatype = "raw_count")
+                                              cor.cut = cor.cut)
 
         dataNorm <- TCGAanalyze_Normalization(tabDF = dataPrep,
-                                              geneInfo = geneInfo,
+                                              geneInfo = geneInfoHT,
                                               method = "gcContent")
 
         dataFilt <- TCGAanalyze_Filtering(tabDF = dataNorm,
@@ -129,7 +128,8 @@ getDataTCGA <- function(cancerType, dataType, directory,
         FileNameData <- paste0(DataDirectory, "_","Illumina Human Methylation 27",".rda")
         if(!file.exists(FileNameData)){
             query.met <- GDCquery(project = CancerProject,
-                                data.category = "DNA methylation",
+                                data.category = "DNA Methylation",
+				data.type = "Methylation Beta Value",
                                 platform = "Illumina Human Methylation 27")
 
             query.met.samples <-  query.met$results[[1]]$cases
@@ -148,7 +148,8 @@ getDataTCGA <- function(cancerType, dataType, directory,
             }
 
             query.met <- GDCquery(project = CancerProject,
-                                data.category = "DNA methylation",
+                                data.category = "DNA Methylation",
+				data.type = "Methylation Beta Value",
                                 platform = "Illumina Human Methylation 27",
                                 barcode = sampDown)
 
