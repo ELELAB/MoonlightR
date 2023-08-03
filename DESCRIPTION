@@ -81,10 +81,10 @@ biocViews: DNAMethylation, DifferentialMethylation, GeneRegulation,
         Pathways, Network, Survival, GeneSetEnrichment,
         NetworkEnrichment
 Suggests: BiocStyle, knitr, rmarkdown, testthat, devtools, roxygen2,
-        png
+        png, edgeR
 VignetteBuilder: knitr
 LazyData: true
 URL: https://github.com/ELELAB/MoonlightR
 BugReports: https://github.com/ELELAB/MoonlightR/issues
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Encoding: UTF-8
