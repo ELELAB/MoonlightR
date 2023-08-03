@@ -1,4 +1,13 @@
   MoonlightR 
+
+CHANGES IN VERSION 1.23.2
+-------------------------
+
+BUG FIX
+
+    o changed arguments for downloading datasets following updates to TCGAbiolinks
+    o added suggested package to fix install crash
+
 ----------------------------------------------------------------
   FIRST VERSION - FEATURES
 
