@@ -1,3 +1,6 @@
+IMPORTANT! THIS REPOSITORY IS NO LONGER MAINTAINED BY US SINCE THERE IS A NEW VERSION OF MOONLIGHT - so please refer to https://github.com/ELELAB/Moonlight2R 
+
+
 Cancer Structural Biology Group, Danish Cancer Society Research Center, Strandboulevarden 49, 2100, Copenhagen, Denmark 
 
 Cancer Systems Biology, Section of Bioinformatics, Department of Health and Technology, Technical University of Denmark, 2800, Lyngby, Copenhagen
